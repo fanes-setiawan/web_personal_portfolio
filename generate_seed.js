@@ -1,13 +1,13 @@
-import { Profile, Project, Skill } from '@/types';
+const fs = require('fs');
 
-export const profileData: Profile = {
-    name: "Marcus Sterling", // Updated to match CV design
+const profileData = {
+    name: "Marcus Sterling",
     role: "Senior Mobile Architect",
     roleSubtitle: "Flutter / iOS / Android",
     bio: "Building scalable mobile solutions with clean architecture & performance-first mindset. Turning complex ideas into seamless user experiences.",
     experienceYears: 8,
     avatarUrl: "/profile-placeholder.jpg",
-    email: "admin@super.com",
+    email: "marcus.sterling@dex.io",
     location: "San Francisco, CA",
     website: "marcus-mobile.dev",
     socials: {
@@ -19,7 +19,7 @@ export const profileData: Profile = {
     ]
 };
 
-export const skillsData: Skill[] = [
+const skillsData = [
     { id: '1', name: 'iOS / Swift', iconName: 'Swift', level: 95 },
     { id: '2', name: 'Android / Kotlin', iconName: 'Kotlin', level: 80 },
     { id: '3', name: 'React Native', iconName: 'React', level: 75 },
@@ -28,7 +28,7 @@ export const skillsData: Skill[] = [
     { id: '6', name: 'CI/CD', iconName: 'GitMerge', level: 85 },
 ];
 
-export const projectsData: Project[] = [
+const projectsData = [
     {
         id: '1',
         title: 'Lumina Wallet',
@@ -98,6 +98,8 @@ export const projectsData: Project[] = [
             "Led a team of 5 developers to ship 12+ client apps.",
             "Spearheaded the migration from Objective-C to Swift, improving build performance by 25%."
         ],
+        stats: [],
+        caseStudy: null
     },
     {
         id: '3',
@@ -107,5 +109,70 @@ export const projectsData: Project[] = [
         imageUrl: '/project3.jpg',
         tags: ['HealthKit', 'MVVM'],
         category: 'android',
+        role: "Mobile Developer",
+        company: "Vitalis Inc.",
+        period: "2020",
+        stats: [],
+        caseStudy: null
     },
 ];
+
+const escape = (str) => str ? `'${str.replace(/'/g, "''")}'` : 'NULL';
+const json = (obj) => obj ? `'${JSON.stringify(obj).replace(/'/g, "''")}'` : 'NULL';
+const array = (arr) => arr ? `ARRAY[${arr.map(item => typeof item === 'string' ? escape(item) : json(item)).join(',')}]` : 'NULL';
+// For tags/achievements which are text arrays
+const textArray = (arr) => arr ? `ARRAY[${arr.map(item => escape(item)).join(',')}]` : 'NULL';
+// For JSON arrays (education is JSONB[])
+const jsonArray = (arr) => arr ? `ARRAY[${arr.map(item => `${json(item)}::jsonb`).join(',')}]` : 'NULL';
+
+const profileSql = `
+-- Create Profile
+DELETE FROM public.profile;
+INSERT INTO public.profile (name, role, role_subtitle, bio, experience_years, avatar_url, email, location, website, socials, education)
+VALUES (
+    ${escape(profileData.name)},
+    ${escape(profileData.role)},
+    ${escape(profileData.roleSubtitle)},
+    ${escape(profileData.bio)},
+    ${profileData.experienceYears},
+    ${escape(profileData.avatarUrl)},
+    ${escape(profileData.email)},
+    ${escape(profileData.location)},
+    ${escape(profileData.website)},
+    ${json(profileData.socials)},
+    ${jsonArray(profileData.education)}
+);
+`;
+
+const skillsSql = `
+-- Create Skills
+DELETE FROM public.skills;
+` + skillsData.map(s => `
+INSERT INTO public.skills (name, icon_name, level)
+VALUES (${escape(s.name)}, ${escape(s.iconName)}, ${s.level});
+`).join('\n');
+
+const projectsSql = `
+-- Create Projects
+DELETE FROM public.projects;
+` + projectsData.map(p => `
+INSERT INTO public.projects (title, short_description, description, category, image_url, tags, role, company, period, achievements, stats, case_study)
+VALUES (
+    ${escape(p.title)},
+    ${escape(p.shortDescription)},
+    ${escape(p.description)},
+    ${escape(p.category)},
+    ${escape(p.imageUrl)},
+    ${textArray(p.tags)},
+    ${escape(p.role)},
+    ${escape(p.company)},
+    ${escape(p.period)},
+    ${textArray(p.achievements)},
+    ${p.stats && p.stats.length > 0 ? jsonArray(p.stats) : 'NULL'},
+    ${json(p.caseStudy)}
+);
+`).join('\n');
+
+const sql = `${profileSql}\n\n${skillsSql}\n\n${projectsSql}`;
+
+console.log(sql);

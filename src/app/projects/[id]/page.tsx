@@ -5,7 +5,7 @@ import { TechArchitecture } from '@/components/case-study/TechArchitecture';
 import { Challenges } from '@/components/case-study/Challenges';
 import { Gallery } from '@/components/case-study/Gallery';
 import { ImpactResults } from '@/components/case-study/ImpactResults';
-import { projectsData } from '@/data/mockData';
+import { getProjectById, getProjects } from '@/data/api';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
@@ -14,7 +14,7 @@ interface PageProps {
 
 export default async function CaseStudyPage({ params }: PageProps) {
     const { id } = await params;
-    const project = projectsData.find((p) => p.id === id);
+    const project = await getProjectById(id);
 
     if (!project) {
         return notFound();
@@ -48,7 +48,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
 // Generate static params for all projects to enable static export if needed
 export async function generateStaticParams() {
-    return projectsData.map((project) => ({
+    const projects = await getProjects();
+    return projects.map((project) => ({
         id: project.id,
     }));
 }
+

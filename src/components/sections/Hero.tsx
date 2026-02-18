@@ -32,12 +32,19 @@ export function Hero({ profile }: HeroProps) {
                 </p>
 
                 <div className="flex items-center gap-4 pt-4">
-                    <button className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium flex items-center gap-2 transition-all">
+                    <a href="#portfolio" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium flex items-center gap-2 transition-all">
                         View Portfolio <ArrowRight size={18} />
-                    </button>
-                    <button className="px-6 py-3 border border-slate-700 hover:border-slate-600 text-white rounded-lg font-medium transition-all">
-                        Contact Me
-                    </button>
+                    </a>
+
+                    {profile.email.includes("Login") ? (
+                        <a href="/login" className="px-6 py-3 border border-slate-700 hover:border-slate-600 text-white rounded-lg font-medium transition-all">
+                            Login to Contact
+                        </a>
+                    ) : (
+                        <a href={`mailto:${profile.email}`} className="px-6 py-3 border border-slate-700 hover:border-slate-600 text-white rounded-lg font-medium transition-all">
+                            Contact Me
+                        </a>
+                    )}
                 </div>
             </div>
 

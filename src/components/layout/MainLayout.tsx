@@ -9,7 +9,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
                     {children}
                 </main>
                 <footer className="py-8 text-center text-slate-600 text-sm">
-                    © {new Date().getFullYear()} Alex Rivera. All Rights Reserved.
+                    © {new Date().getFullYear()} PORTOFOLIO. All Rights Reserved.
                 </footer>
             </div>
         </div>

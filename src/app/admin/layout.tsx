@@ -52,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             👨‍💻
                         </div>
                         <div>
-                            <p className="text-xs font-bold text-white">Alex Rivera</p>
+                            <p className="text-xs font-bold text-white">PORTOFOLIO</p>
                             <p className="text-[10px] text-slate-500">Senior Lead Dev</p>
                         </div>
                     </div>
