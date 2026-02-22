@@ -34,6 +34,7 @@ CREATE TABLE public.projects (
   category TEXT,
   image_url TEXT,
   tags TEXT[],
+  link TEXT,
   role TEXT,
   company TEXT,
   period TEXT,
@@ -65,3 +66,21 @@ CREATE POLICY "Enable delete for authenticated users only" ON public.skills FOR 
 CREATE POLICY "Enable insert for authenticated users only" ON public.projects FOR INSERT TO authenticated WITH CHECK (true);
 CREATE POLICY "Enable update for authenticated users only" ON public.projects FOR UPDATE TO authenticated USING (true);
 CREATE POLICY "Enable delete for authenticated users only" ON public.projects FOR DELETE TO authenticated USING (true);
+
+-- Create Companies Table
+CREATE TABLE public.companies (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  logo_url TEXT,
+  website TEXT,
+  description TEXT,
+  location TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- RLS for Companies
+ALTER TABLE public.companies ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public companies are viewable by everyone" ON public.companies FOR SELECT USING (true);
+CREATE POLICY "Enable insert for authenticated users only" ON public.companies FOR INSERT TO authenticated WITH CHECK (true);
+CREATE POLICY "Enable update for authenticated users only" ON public.companies FOR UPDATE TO authenticated USING (true);
+CREATE POLICY "Enable delete for authenticated users only" ON public.companies FOR DELETE TO authenticated USING (true);

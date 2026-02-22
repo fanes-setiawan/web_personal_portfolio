@@ -16,16 +16,25 @@ export async function Navbar() {
         role = userRole?.role;
     }
 
+    const { data: profile } = await supabase
+        .from('profile')
+        .select('name')
+        .single();
+
+    const initials = profile?.name ? profile.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2) : 'A';
+    const brandName = profile?.name ? profile.name.toUpperCase() : 'PORTOFOLIO';
+
     // Navigation Menus
     const publicNav = [
         { name: 'Home', href: '/' },
         { name: 'About', href: '/#about' },
+        { name: 'Experience', href: '/#experience' },
         { name: 'Portfolio', href: '/#portfolio' },
         { name: 'Blog', href: '/blog' },
     ];
 
     const hrNav = [
-        { name: 'Work Experience', href: '/#skills' },
+        { name: 'Work Experience', href: '/#experience' },
         { name: 'Project Details', href: '/#portfolio' },
         { name: 'Technical Docs', href: '/docs' },
     ];
@@ -41,10 +50,10 @@ export async function Navbar() {
     return (
         <nav className="w-full py-6 px-4 md:px-12 flex items-center justify-between">
             <div className="flex items-center gap-2">
-                <div className="bg-blue-600 p-1.5 rounded-md">
-                    <span className="text-white font-bold text-lg">A</span>
+                <div className="bg-blue-600 p-1.5 rounded-md w-10 h-10 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">{initials}</span>
                 </div>
-                <Link href="/" className="text-xl font-bold tracking-tight text-white">PORTOFOLIO</Link>
+                <Link href="/" className="text-xl font-bold tracking-tight text-white">{brandName}</Link>
             </div>
 
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">

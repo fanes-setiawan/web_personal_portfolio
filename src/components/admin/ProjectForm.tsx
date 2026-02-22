@@ -1,96 +1,249 @@
-'use client';
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createProject } from '@/app/admin/projects/actions';
+import { createProject, updateProject } from '@/app/admin/projects/actions';
+import { Save, AlertCircle, CheckCircle2, Loader2, X, ChevronDown, Image as ImageIcon } from 'lucide-react';
+import { ImageUpload } from '@/components/admin/ImageUpload';
+import { Company } from '@/types';
 
-export function ProjectForm() {
+interface Project {
+    id: string;
+    title: string;
+    category: string;
+    short_description: string;
+    description?: string;
+    image_url?: string;
+    tags?: string[];
+    role?: string;
+    company?: string;
+    period?: string;
+    appStoreUrl?: string;
+    playStoreUrl?: string;
+    link?: string;
+}
+
+export function ProjectForm({
+    project,
+    companies = [],
+    onCancel
+}: {
+    project?: Project | null,
+    companies?: Company[],
+    onCancel?: () => void
+}) {
     const [isLoading, setIsLoading] = useState(false);
-    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
+    const [imageUrl, setImageUrl] = useState(project?.image_url || '');
     const router = useRouter();
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
-        setMessage('');
+        setStatus({ type: null, message: '' });
 
         try {
-            await createProject(formData);
-            setMessage('✅ Project created successfully!');
-            // Reset form (optional mechanism needed if not navigating away)
-            // For now, we might just reload or clear
-            window.location.reload();
+            if (project) {
+                await updateProject(project.id, formData);
+                setStatus({ type: 'success', message: 'Project updated successfully!' });
+            } else {
+                await createProject(formData);
+                setStatus({ type: 'success', message: 'Project created successfully!' });
+            }
+
+            setTimeout(() => {
+                if (onCancel) onCancel();
+                window.location.reload();
+            }, 1500);
         } catch (error: any) {
-            setMessage(`❌ Error: ${error.message}`);
+            setStatus({ type: 'error', message: error.message || 'Something went wrong' });
         } finally {
             setIsLoading(false);
         }
     }
 
     return (
-        <form action={handleSubmit} className="space-y-6 bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <h2 className="text-xl font-bold text-white mb-4">Add New Project</h2>
+        <form action={handleSubmit} className="space-y-6 bg-white/5 p-8 rounded-2xl relative">
+            <div className="flex items-center justify-between mb-2">
+                <h2 className="text-xl font-bold text-white">
+                    {project ? 'Edit Project' : 'Add New Project'}
+                </h2>
+                {project && (
+                    <button
+                        type="button"
+                        onClick={onCancel}
+                        className="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-2 text-sm"
+                    >
+                        <X size={16} />
+                        Cancel
+                    </button>
+                )}
+            </div>
 
-            {message && (
-                <div className={`p-3 rounded text-sm font-medium ${message.includes('Error') ? 'bg-red-500/10 text-red-400' : 'bg-green-500/10 text-green-400'}`}>
-                    {message}
+            {status.type && (
+                <div className={`p-4 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300 ${status.type === 'error' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-green-500/10 text-green-400 border border-green-500/20'
+                    }`}>
+                    {status.type === 'error' ? <AlertCircle size={20} /> : <CheckCircle2 size={20} />}
+                    <p className="text-sm font-medium">{status.message}</p>
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Project Title *</label>
-                    <input name="title" required className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="e.g. E-Commerce App" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Project Title *</label>
+                    <input
+                        name="title"
+                        required
+                        defaultValue={project?.title}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="e.g. E-Commerce App"
+                    />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Category *</label>
-                    <select name="category" required className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none">
-                        <option value="ios">iOS</option>
-                        <option value="android">Android</option>
-                        <option value="web">Web</option>
-                        <option value="all">All / Other</option>
-                    </select>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Category *</label>
+                    <div className="relative">
+                        <select
+                            name="category"
+                            required
+                            defaultValue={project?.category}
+                            className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all appearance-none"
+                        >
+                            <option value="ios" className="bg-navy-900">iOS Development</option>
+                            <option value="android" className="bg-navy-900">Android Development</option>
+                            <option value="web" className="bg-navy-900">Web Application</option>
+                            <option value="all" className="bg-navy-900">Cross-Platform / Other</option>
+                        </select>
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" size={16} />
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Short Description *</label>
-                <input name="shortDescription" required className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="Brief summary for card view" />
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-400 ml-1">Short Description *</label>
+                <input
+                    name="shortDescription"
+                    required
+                    defaultValue={project?.short_description}
+                    className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                    placeholder="One-line summary for the project card"
+                />
             </div>
 
-            <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Full Description</label>
-                <textarea name="description" rows={4} className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="Detailed case study or description..." />
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-400 ml-1">Full Description</label>
+                <textarea
+                    name="description"
+                    rows={4}
+                    defaultValue={project?.description}
+                    className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                    placeholder="Detailed project case study, technologies used, and outcomes..."
+                />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Image URL</label>
-                    <input name="imageUrl" className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="https://..." defaultValue="/placeholder.jpg" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2 md:col-span-2">
+                    <input type="hidden" name="imageUrl" value={imageUrl} />
+                    <ImageUpload
+                        label="Project Showcase Image"
+                        path={`projects/${project?.id || 'new'}_image.png`}
+                        currentImageUrl={project?.image_url}
+                        onUploadComplete={setImageUrl}
+                    />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Tags (comma separated)</label>
-                    <input name="tags" className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="Swift, Kotlin, React Native" />
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Role</label>
-                    <input name="role" className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="e.g. Lead Engineer" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Company</label>
-                    <input name="company" className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="e.g. Tech Corp" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-slate-400 mb-1">Link (Optional)</label>
-                    <input name="link" className="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-white focus:border-blue-500 outline-none" placeholder="https://..." />
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Tags (comma separated)</label>
+                    <input
+                        name="tags"
+                        defaultValue={project?.tags?.join(', ')}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="Swift, Kotlin, Next.js, Tailwind"
+                    />
                 </div>
             </div>
 
-            <button disabled={isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition-colors disabled:opacity-50">
-                {isLoading ? 'Saving...' : 'Create Project'}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Role</label>
+                    <input
+                        name="role"
+                        defaultValue={project?.role}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="e.g. Lead Mobile Developer"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Company</label>
+                    <div className="relative">
+                        <select
+                            name="company"
+                            defaultValue={project?.company}
+                            className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all appearance-none"
+                        >
+                            <option value="" className="bg-navy-900 text-slate-500">Freelance / No Company</option>
+                            {companies.map((c) => (
+                                <option key={c.id} value={c.name} className="bg-navy-900">
+                                    {c.name}
+                                </option>
+                            ))}
+                        </select>
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" size={16} />
+                    </div>
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Period</label>
+                    <input
+                        name="period"
+                        defaultValue={project?.period}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="e.g. 2023 - 2024"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Project Link</label>
+                    <input
+                        name="link"
+                        defaultValue={project?.link}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="https://github.com/..."
+                    />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">App Store URL</label>
+                    <input
+                        name="appStoreUrl"
+                        defaultValue={project?.appStoreUrl}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="https://apps.apple.com/..."
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-400 ml-1">Play Store URL</label>
+                    <input
+                        name="playStoreUrl"
+                        defaultValue={project?.playStoreUrl}
+                        className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                        placeholder="https://play.google.com/store/..."
+                    />
+                </div>
+            </div>
+
+            <button
+                disabled={isLoading}
+                type="submit"
+                className={`w-full ${project ? 'bg-blue-600 hover:bg-blue-500 shadow-blue-600/20' : 'bg-primary hover:bg-primary-dark shadow-primary/20'} text-white font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed mt-4`}
+            >
+                {isLoading ? (
+                    <>
+                        <Loader2 className="animate-spin" size={20} />
+                        Processing...
+                    </>
+                ) : (
+                    <>
+                        <Save size={20} />
+                        {project ? 'Update Project' : 'Publish Project'}
+                    </>
+                )}
             </button>
         </form>
     );

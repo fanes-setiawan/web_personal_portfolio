@@ -2,12 +2,15 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { Hero } from '@/components/sections/Hero';
 import { Skills } from '@/components/sections/Skills';
 import { Projects } from '@/components/sections/Projects';
-import { getProfile, getSkills, getProjects } from '@/data/api';
+import { Experience } from '@/components/sections/Experience';
+import { getProfile, getSkills, getProjects, getCompanies, isUserAuthorized } from '@/data/api';
 
 export default async function Home() {
   const profile = await getProfile();
   const skills = await getSkills();
   const projects = await getProjects();
+  const companies = await getCompanies();
+  const isAuthorized = await isUserAuthorized();
 
   if (!profile) {
     return (
@@ -26,7 +29,8 @@ export default async function Home() {
     <MainLayout>
       <Hero profile={profile} />
       <Skills skills={skills} />
-      <Projects projects={projects} />
+      <Experience companies={companies} />
+      <Projects projects={projects} isAuthorized={isAuthorized} />
 
       {/* Contact Section Placeholder */}
       <section id="contact" className="py-20 flex flex-col items-center justify-center text-center">

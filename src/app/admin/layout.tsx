@@ -2,15 +2,18 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, FolderKanban, Building2, BarChart3, Settings, Rocket } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Building2, BarChart3, Settings, Rocket, Code2, Award, UserCircle } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 
     const navItems = [
         { name: 'Overview', href: '/admin', icon: LayoutDashboard },
+        { name: 'Profile', href: '/admin/profile', icon: UserCircle },
         { name: 'Projects', href: '/admin/projects', icon: FolderKanban },
         { name: 'Companies', href: '/admin/companies', icon: Building2 },
+        { name: 'Skills', href: '/admin/skills', icon: Award },
+        { name: 'Technologies', href: '/admin/technologies', icon: Code2 },
         { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
     ];
 
@@ -29,8 +32,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         return (
                             <Link
                                 key={item.name}
-                                href="#" // simplified for demo since only projects/[id] exists
-                                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive || item.name === 'Projects' ? 'bg-blue-600/10 text-blue-400 border border-blue-600/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                href={item.href}
+                                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive ? 'bg-blue-600/10 text-blue-400 border border-blue-600/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                             >
                                 <item.icon size={18} />
                                 {item.name}
@@ -46,17 +49,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </Link>
                 </div>
 
-                <div className="p-4 border-t border-slate-800">
-                    <div className="flex items-center gap-3 p-2 rounded-lg bg-slate-900 border border-slate-800">
-                        <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs border border-white">
-                            👨‍💻
-                        </div>
-                        <div>
-                            <p className="text-xs font-bold text-white">PORTOFOLIO</p>
-                            <p className="text-[10px] text-slate-500">Senior Lead Dev</p>
-                        </div>
-                    </div>
-                </div>
             </aside>
 
             {/* Main Content */}

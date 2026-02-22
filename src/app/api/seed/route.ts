@@ -1,24 +1,14 @@
 import { createClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
-import { profileData, skillsData, projectsData } from '@/data/mockData';
+import { profileData, skillsData, projectsData, companiesData } from '@/data/mockData';
 
 export async function GET() {
     const supabase = createClient();
     const client = await supabase;
 
-    // Check authentication
-    // const { data: { user }, error: authError } = await client.auth.getUser();
-    // if (authError || !user) {
-    //     return NextResponse.json({ error: 'Unauthorized. Please log in at /login first.' }, { status: 401 });
-    // }
-
     try {
         // 1. Seed Profile
-        // using upsert with onConflict on 'email' assuming it is a unique key
-        // 1. Seed Profile
-        // Delete all profiles first to avoid conflict issues since 'email' might not be unique in schema
         await client.from('profile').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-
         const { error: profileError } = await client
             .from('profile')
             .insert({
@@ -38,9 +28,7 @@ export async function GET() {
         if (profileError) throw new Error(`Profile Error: ${profileError.message}`);
 
         // 2. Seed Skills
-        // Delete existing skills to avoid duplicates on re-seed (optional, but cleaner)
         await client.from('skills').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-
         const skillsToInsert = skillsData.map(skill => ({
             name: skill.name,
             icon_name: skill.iconName,
@@ -54,9 +42,7 @@ export async function GET() {
         if (skillsError) throw new Error(`Skills Error: ${skillsError.message}`);
 
         // 3. Seed Projects
-        // Delete existing projects
         await client.from('projects').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-
         const projectsToInsert = projectsData.map(project => ({
             title: project.title,
             short_description: project.shortDescription,
@@ -78,10 +64,29 @@ export async function GET() {
 
         if (projectsError) throw new Error(`Projects Error: ${projectsError.message}`);
 
+        // 4. Seed Companies
+        try {
+            await client.from('companies').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+            const companiesToInsert = companiesData.map(c => ({
+                name: c.name,
+                logo_url: c.logo_url,
+                website: c.website,
+                description: c.description,
+                location: c.location
+            }));
 
+            const { error: companiesError } = await client
+                .from('companies')
+                .insert(companiesToInsert);
 
-        // 4. Seed User Roles
-        // We can't delete based on ID easily if we don't know it, so we'll upsert by email
+            if (companiesError) {
+                console.warn("Companies table might not exist yet:", companiesError.message);
+            }
+        } catch (e) {
+            console.warn("Companies seeding skipped (table likely missing)");
+        }
+
+        // 5. Seed User Roles
         const rolesToInsert = [
             { email: 'admin@super.com', role: 'SUPER_ADMIN' },
             { email: 'hr@access.com', role: 'HR' }
@@ -92,11 +97,10 @@ export async function GET() {
             .upsert(rolesToInsert, { onConflict: 'email' });
 
         if (rolesError) {
-            // If table doesn't exist, we ignore for now but log it (or throw if critical)
             console.warn("User Roles table might not exist yet:", rolesError.message);
         }
 
-        return NextResponse.json({ message: 'Database (Profile, Skills, Projects, Roles) seeded successfully!' });
+        return NextResponse.json({ message: 'Database (Profile, Skills, Projects, Companies, Roles) seeded successfully!' });
     } catch (error: unknown) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
         return NextResponse.json({ error: errorMessage }, { status: 500 });

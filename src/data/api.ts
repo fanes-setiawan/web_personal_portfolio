@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import { Profile, Project, Skill } from '@/types';
+import { Profile, Project, Skill, Company } from '@/types';
 
 export async function getProfile(): Promise<Profile | null> {
     const supabase = await createClient();
@@ -41,6 +41,21 @@ export async function getProfile(): Promise<Profile | null> {
     };
 }
 
+export async function isUserAuthorized(): Promise<boolean> {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return false;
+
+    const { data: userRole } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('email', user.email)
+        .single();
+
+    return userRole?.role === 'HR' || userRole?.role === 'SUPER_ADMIN';
+}
+
 export async function getSkills(): Promise<Skill[]> {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -58,8 +73,8 @@ export async function getSkills(): Promise<Skill[]> {
     }));
 }
 
-export async function getProjects(): Promise<Project[]> {
-    const supabase = await createClient();
+export async function getProjects(supabaseClient?: any): Promise<Project[]> {
+    const supabase = supabaseClient || await createClient();
     const { data, error } = await supabase
         .from('projects')
         .select('*')
@@ -78,14 +93,16 @@ export async function getProjects(): Promise<Project[]> {
         role: item.role,
         company: item.company,
         period: item.period,
+        appStoreUrl: item.app_store_url,
+        playStoreUrl: item.play_store_url,
         achievements: item.achievements,
         stats: item.stats,
         caseStudy: item.case_study,
     }));
 }
 
-export async function getProjectById(id: string): Promise<Project | null> {
-    const supabase = await createClient();
+export async function getProjectById(id: string, supabaseClient?: any): Promise<Project | null> {
+    const supabase = supabaseClient || await createClient();
     const { data, error } = await supabase
         .from('projects')
         .select('*')
@@ -105,8 +122,38 @@ export async function getProjectById(id: string): Promise<Project | null> {
         role: data.role,
         company: data.company,
         period: data.period,
+        appStoreUrl: data.app_store_url,
+        playStoreUrl: data.play_store_url,
         achievements: data.achievements,
         stats: data.stats,
         caseStudy: data.case_study,
     };
+}
+
+export async function getCompanies(): Promise<Company[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from('companies')
+        .select(`
+            *,
+            technology_junction:company_technologies(
+                technology:technologies(*)
+            )
+        `)
+        .order('name', { ascending: true });
+
+    if (error || !data) return [];
+
+    return data.map((item: any) => ({
+        id: item.id,
+        name: item.name,
+        logo_url: item.logo_url,
+        website: item.website,
+        description: item.description,
+        location: item.location,
+        start_date: item.start_date,
+        end_date: item.end_date,
+        created_at: item.created_at,
+        technologies: (item.technology_junction || []).map((tj: any) => tj.technology).filter(Boolean)
+    }));
 }

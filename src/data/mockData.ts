@@ -1,7 +1,7 @@
-import { Profile, Project, Skill } from '@/types';
+import { Profile, Project, Skill, Company } from '@/types';
 
 export const profileData: Profile = {
-    name: "Marcus Sterling", // Updated to match CV design
+    name: "Marcus Sterling",
     role: "Senior Mobile Architect",
     roleSubtitle: "Flutter / iOS / Android",
     bio: "Building scalable mobile solutions with clean architecture & performance-first mindset. Turning complex ideas into seamless user experiences.",
@@ -108,4 +108,31 @@ export const projectsData: Project[] = [
         tags: ['HealthKit', 'MVVM'],
         category: 'android',
     },
+];
+
+export const companiesData: Company[] = [
+    {
+        id: '1',
+        name: 'Apple Inc.',
+        logo_url: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
+        website: 'https://apple.com',
+        description: 'Global technology leader known for iPhone, Mac, and innovative software ecosystems.',
+        location: 'Cupertino, CA'
+    },
+    {
+        id: '2',
+        name: 'Google',
+        logo_url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
+        website: 'https://google.com',
+        description: 'Pioneer in search, cloud computing, and hardware solutions.',
+        location: 'Mountain View, CA'
+    },
+    {
+        id: '3',
+        name: 'Meta',
+        logo_url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg',
+        website: 'https://meta.com',
+        description: 'Focusing on social connection and the future of the metaverse.',
+        location: 'Menlo Park, CA'
+    }
 ];

@@ -49,6 +49,8 @@ export interface Project {
     role?: string; // For CV: e.g. "Lead iOS Engineer"
     company?: string; // For CV
     period?: string; // For CV: e.g. "2021 - Present"
+    appStoreUrl?: string;
+    playStoreUrl?: string;
     achievements?: string[]; // For CV bullet points
 }
 
@@ -56,6 +58,25 @@ export interface Education {
     degree: string;
     institution: string;
     period: string;
+}
+
+export interface Technology {
+    id: string;
+    name: string;
+    created_at?: string;
+}
+
+export interface Company {
+    id: string;
+    name: string;
+    logo_url?: string;
+    website?: string;
+    description?: string;
+    location?: string;
+    start_date?: string;
+    end_date?: string;
+    technologies?: Technology[];
+    created_at?: string;
 }
 
 export interface Profile {
@@ -73,6 +94,7 @@ export interface Profile {
         github?: string;
         linkedin?: string;
         twitter?: string;
+        whatsapp?: string;
     };
     education?: Education[];
 }

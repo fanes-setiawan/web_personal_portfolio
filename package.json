@@ -11,6 +11,8 @@
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.95.3",
+    "browser-image-compression": "^2.0.2",
+    "framer-motion": "^12.34.3",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.1.0",
     "lucide-react": "^0.564.0",
