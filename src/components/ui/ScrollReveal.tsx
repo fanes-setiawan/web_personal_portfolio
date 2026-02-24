@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 interface ScrollRevealProps {
     children: ReactNode;
     width?: "fit-content" | "100%";
+    className?: string;
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
     duration?: number;
@@ -15,6 +16,7 @@ interface ScrollRevealProps {
 export const ScrollReveal = ({
     children,
     width = "100%",
+    className = "",
     delay = 0,
     direction = "up",
     duration = 0.5,
@@ -30,7 +32,8 @@ export const ScrollReveal = ({
     };
 
     return (
-        <div style={{ position: "relative", width, overflow: "visible" }}>
+        <div className={className} style={{ position: "relative", width, overflow: "visible" }}>
+
             <motion.div
                 variants={{
                     hidden: {

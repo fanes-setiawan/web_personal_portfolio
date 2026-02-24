@@ -131,7 +131,8 @@ export function CaseStudyHeader({ project }: CaseStudyHeaderProps) {
 
                 {/* Key Stats Grid */}
                 {project.stats && project.stats.length > 0 && (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
                         {project.stats.map((stat, idx) => (
                             <div key={idx} className="p-6 bg-[#0F1629] border border-slate-800 rounded-2xl flex flex-col items-center text-center hover:border-blue-500/30 transition-all group">
                                 <span className="text-3xl font-black text-white mb-1 group-hover:text-blue-400 transition-colors uppercase">{stat.value}</span>

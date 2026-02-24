@@ -26,7 +26,8 @@ export function CVPreview({ profile, skills, projects, companies, settings, cvRe
     const privateProjects = filteredProjects.filter(p => p.isPrivate);
 
     return (
-        <div className="flex-1 min-h-screen bg-[#0F1629] p-8 pl-96 overflow-y-auto flex justify-center items-start">
+        <div className="flex-1 min-h-screen bg-[#0F1629] p-4 md:p-12 overflow-x-auto custom-scrollbar flex justify-start lg:justify-center items-start">
+
             {/* A4 Paper */}
             <div
                 ref={cvRef}

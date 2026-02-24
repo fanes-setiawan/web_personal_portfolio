@@ -6,6 +6,8 @@ import { CVPreview } from '@/components/cv/CVPreview';
 import { Profile, Project, Skill, Company } from '@/types';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { X, Layers } from 'lucide-react';
+
 
 interface CVGeneratorClientProps {
     profile: Profile;
@@ -23,8 +25,10 @@ export default function CVGeneratorClient({ profile, skills, projects, companies
         selectedCompanyIds: companies.map(c => c.id),
     });
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
     const cvRef = useRef<HTMLDivElement>(null);
+
 
     const handleExport = async () => {
         if (!cvRef.current) return;
@@ -74,7 +78,15 @@ export default function CVGeneratorClient({ profile, skills, projects, companies
     };
 
     return (
-        <div className="flex min-h-screen bg-[#0B1121]">
+        <div className="flex flex-col lg:flex-row min-h-screen bg-[#0B1121] relative">
+            {/* Mobile Sidebar Toggle */}
+            <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="lg:hidden fixed bottom-6 right-6 z-[100] p-4 bg-blue-600 text-white rounded-full shadow-2xl shadow-blue-900/40 hover:scale-110 active:scale-95 transition-all"
+            >
+                {isSidebarOpen ? <X size={24} /> : <Layers size={24} />}
+            </button>
+
             <Sidebar
                 settings={settings}
                 setSettings={setSettings}
@@ -82,15 +94,20 @@ export default function CVGeneratorClient({ profile, skills, projects, companies
                 isExporting={isExporting}
                 projects={projects}
                 companies={companies}
+                isOpen={isSidebarOpen}
+                setIsOpen={setIsSidebarOpen}
             />
-            <CVPreview
-                profile={profile}
-                skills={skills}
-                projects={projects}
-                companies={companies}
-                settings={settings}
-                cvRef={cvRef}
-            />
+            <div className="flex-1 w-full overflow-x-hidden md:overflow-x-visible">
+                <CVPreview
+                    profile={profile}
+                    skills={skills}
+                    projects={projects}
+                    companies={companies}
+                    settings={settings}
+                    cvRef={cvRef}
+                />
+            </div>
         </div>
+
     );
 }

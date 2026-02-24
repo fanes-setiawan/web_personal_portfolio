@@ -28,13 +28,13 @@ export function Projects({ projects, skills = [], isAuthorized = false }: Projec
                         <h2 className="text-3xl md:text-4xl font-bold text-white">Built for Impact</h2>
                     </div>
 
-                    <div className="flex items-center gap-2 p-1 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                    <div className="flex items-center gap-2 p-1 bg-slate-800/50 rounded-lg border border-slate-700/50 overflow-x-auto custom-scrollbar-hide max-w-full">
                         {(['all', 'ios', 'android'] as const).map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`
-                            px-4 py-2 rounded-md text-sm font-medium transition-all capitalize
+                            px-4 py-2 rounded-md text-sm font-medium transition-all capitalize whitespace-nowrap
                             ${filter === cat
                                         ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
                                         : 'text-slate-400 hover:text-white hover:bg-slate-700/50'}
