@@ -1,4 +1,4 @@
-import { login, signup } from './actions'
+import { login } from './actions'
 
 export default async function LoginPage({
     searchParams,
@@ -94,12 +94,6 @@ export default async function LoginPage({
                                 className="w-full py-3 px-4 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all duration-200 active:scale-[0.98]"
                             >
                                 Sign In
-                            </button>
-                            <button
-                                formAction={signup}
-                                className="w-full py-3 px-4 rounded-xl text-sm font-semibold text-foreground bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-200 active:scale-[0.98]"
-                            >
-                                Create an account
                             </button>
                         </div>
                     </form>

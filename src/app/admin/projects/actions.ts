@@ -33,13 +33,12 @@ export async function createProject(formData: FormData) {
         period: formData.get('period') as string,
         app_store_url: formData.get('appStoreUrl') as string,
         play_store_url: formData.get('playStoreUrl') as string,
+        is_private: formData.get('isPrivate') === 'true',
+        link: formData.get('link') as string,
+        achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
         created_at: new Date().toISOString(),
     };
 
-    // Only add link if it exists in the database schema
-    // Since we detected it's missing, we comment it out for now to ensure functionality
-    // const link = formData.get('link') as string;
-    // if (link) projectData.link = link;
 
     const { error } = await supabase.from('projects').insert(projectData);
 
@@ -98,6 +97,9 @@ export async function updateProject(id: string, formData: FormData) {
         period: formData.get('period') as string,
         app_store_url: formData.get('appStoreUrl') as string,
         play_store_url: formData.get('playStoreUrl') as string,
+        is_private: formData.get('isPrivate') === 'true',
+        link: formData.get('link') as string,
+        achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
     };
 
     const { error } = await supabase

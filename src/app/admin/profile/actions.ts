@@ -20,7 +20,9 @@ export async function updateProfileAction(formData: FormData) {
             linkedin: formData.get('linkedin') as string,
             twitter: formData.get('twitter') as string,
             whatsapp: formData.get('whatsapp') as string,
-        }
+        },
+        education: JSON.parse(formData.get('education') as string || '[]'),
+        core_tech_stack: (formData.get('coreTechStack') as string || '').split(',').map(s => s.trim()).filter(Boolean)
     };
 
     const { error } = await supabase

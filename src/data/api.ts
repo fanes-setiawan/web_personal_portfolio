@@ -37,7 +37,8 @@ export async function getProfile(): Promise<Profile | null> {
         website: isAllowed ? data.website : null,
         socials: isAllowed ? data.socials : {},
         education: isAllowed ? data.education : [],
-        phone: isAllowed ? data.phone : "Login to view"
+        phone: isAllowed ? data.phone : "Login to view",
+        coreTechStack: isAllowed ? data.core_tech_stack : []
     };
 }
 
@@ -98,6 +99,7 @@ export async function getProjects(supabaseClient?: any): Promise<Project[]> {
         achievements: item.achievements,
         stats: item.stats,
         caseStudy: item.case_study,
+        isPrivate: item.is_private,
     }));
 }
 
@@ -127,6 +129,7 @@ export async function getProjectById(id: string, supabaseClient?: any): Promise<
         achievements: data.achievements,
         stats: data.stats,
         caseStudy: data.case_study,
+        isPrivate: data.is_private,
     };
 }
 
@@ -140,7 +143,8 @@ export async function getCompanies(): Promise<Company[]> {
                 technology:technologies(*)
             )
         `)
-        .order('name', { ascending: true });
+        .order('start_date', { ascending: false });
+
 
     if (error || !data) return [];
 

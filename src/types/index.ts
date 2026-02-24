@@ -52,6 +52,7 @@ export interface Project {
     appStoreUrl?: string;
     playStoreUrl?: string;
     achievements?: string[]; // For CV bullet points
+    isPrivate?: boolean; // For CV categorization
 }
 
 export interface Education {
@@ -90,6 +91,7 @@ export interface Profile {
     location?: string; // For CV
     phone?: string; // For CV
     website?: string; // For CV
+    coreTechStack?: string[]; // For CV
     socials: {
         github?: string;
         linkedin?: string;

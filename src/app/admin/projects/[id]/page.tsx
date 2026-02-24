@@ -63,14 +63,6 @@ export default function EditProjectPage() {
                                         <option>StartUp Inc</option>
                                     </select>
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-bold text-slate-400 mb-2">Project Status</label>
-                                    <select className="w-full bg-[#0B1121] border border-slate-700 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors appearance-none">
-                                        <option>Live</option>
-                                        <option>In Development</option>
-                                        <option>Archived</option>
-                                    </select>
-                                </div>
                             </div>
 
                             <div>

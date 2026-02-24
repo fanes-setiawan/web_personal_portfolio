@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { Profile } from '@/types';
 import { updateProfileAction } from '@/app/admin/profile/actions';
 import { ImageUpload } from '@/components/admin/ImageUpload';
-import { Save, Loader2, User, Mail, MapPin, Briefcase, AlignLeft, Award } from 'lucide-react';
+import { Save, Loader2, User, Mail, MapPin, Briefcase, AlignLeft, Award, X } from 'lucide-react';
 
 export function ProfileManagementClient({ profile }: { profile: Profile & { id: string } }) {
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
     const [avatarUrl, setAvatarUrl] = useState(profile.avatarUrl || '');
+    const [education, setEducation] = useState(profile.education || []);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -130,17 +131,31 @@ export function ProfileManagementClient({ profile }: { profile: Profile & { id: 
                                 />
                             </div>
 
+                            {/* Core Tech Stack Section */}
+                            <div className="pt-4 border-t border-white/5 space-y-4">
+                                <h4 className="text-sm font-bold text-white uppercase tracking-widest">Core Tech Stack</h4>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tech Stack (comma separated)</label>
+                                    <input
+                                        name="coreTechStack"
+                                        defaultValue={profile.coreTechStack?.join(', ')}
+                                        placeholder="Swift, Kotlin, Next.js, Tailwind"
+                                        className="w-full bg-black/40 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
+                                    />
+                                </div>
+                            </div>
+
                             {/* Social Media Section */}
                             <div className="pt-4 border-t border-white/5 space-y-4">
                                 <h4 className="text-sm font-bold text-white uppercase tracking-widest">Social Media Links</h4>
-
+                                {/* ... existing social inputs ... */}
                                 <div className="space-y-4">
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">GitHub URL</label>
                                         <input
                                             name="github"
                                             defaultValue={profile.socials?.github}
-                                            placeholder="https://github.com/yourusername"
+                                            placeholder="https://github.com/..."
                                             className="w-full bg-black/40 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
                                         />
                                     </div>
@@ -149,7 +164,7 @@ export function ProfileManagementClient({ profile }: { profile: Profile & { id: 
                                         <input
                                             name="linkedin"
                                             defaultValue={profile.socials?.linkedin}
-                                            placeholder="https://linkedin.com/in/yourusername"
+                                            placeholder="https://linkedin.com/in/..."
                                             className="w-full bg-black/40 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
                                         />
                                     </div>
@@ -158,7 +173,7 @@ export function ProfileManagementClient({ profile }: { profile: Profile & { id: 
                                         <input
                                             name="twitter"
                                             defaultValue={profile.socials?.twitter}
-                                            placeholder="https://twitter.com/yourusername"
+                                            placeholder="https://twitter.com/..."
                                             className="w-full bg-black/40 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
                                         />
                                     </div>
@@ -167,12 +182,86 @@ export function ProfileManagementClient({ profile }: { profile: Profile & { id: 
                                         <input
                                             name="whatsapp"
                                             defaultValue={profile.socials?.whatsapp}
-                                            placeholder="https://wa.me/628..."
+                                            placeholder="https://wa.me/..."
                                             className="w-full bg-black/40 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
                                         />
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Education Section */}
+                    <div className="glass p-8 rounded-2xl border border-white/5 bg-white/5 shadow-xl">
+                        <div className="flex justify-between items-center mb-6">
+                            <h4 className="text-sm font-bold text-white uppercase tracking-widest">Education History</h4>
+                            <button
+                                type="button"
+                                onClick={() => setEducation([...education, { degree: '', institution: '', period: '' }])}
+                                className="text-xs bg-primary/20 text-primary hover:bg-primary/30 px-3 py-1.5 rounded-lg border border-primary/20 transition-all font-bold"
+                            >
+                                + Add Education
+                            </button>
+                        </div>
+
+                        <input type="hidden" name="education" value={JSON.stringify(education)} />
+
+                        <div className="space-y-6">
+                            {education.map((edu, index) => (
+                                <div key={index} className="p-6 bg-black/40 border border-slate-800 rounded-2xl space-y-4 relative group">
+                                    <button
+                                        type="button"
+                                        onClick={() => setEducation(education.filter((_, i) => i !== index))}
+                                        className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
+                                    >
+                                        <X size={14} />
+                                    </button>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Degree / Major</label>
+                                            <input
+                                                value={edu.degree}
+                                                onChange={(e) => {
+                                                    const newEdu = [...education];
+                                                    newEdu[index].degree = e.target.value;
+                                                    setEducation(newEdu);
+                                                }}
+                                                placeholder="e.g. B.S. Computer Science"
+                                                className="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Institution</label>
+                                            <input
+                                                value={edu.institution}
+                                                onChange={(e) => {
+                                                    const newEdu = [...education];
+                                                    newEdu[index].institution = e.target.value;
+                                                    setEducation(newEdu);
+                                                }}
+                                                placeholder="e.g. Stanford University"
+                                                className="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+                                            />
+                                        </div>
+                                        <div className="space-y-2 md:col-span-2">
+                                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Period</label>
+                                            <input
+                                                value={edu.period}
+                                                onChange={(e) => {
+                                                    const newEdu = [...education];
+                                                    newEdu[index].period = e.target.value;
+                                                    setEducation(newEdu);
+                                                }}
+                                                placeholder="e.g. 2018 - 2022"
+                                                className="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                            {education.length === 0 && (
+                                <p className="text-center text-slate-500 text-sm py-4 italic">No education history added yet.</p>
+                            )}
                         </div>
                     </div>
 

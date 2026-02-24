@@ -117,15 +117,20 @@ export const companiesData: Company[] = [
         logo_url: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
         website: 'https://apple.com',
         description: 'Global technology leader known for iPhone, Mac, and innovative software ecosystems.',
-        location: 'Cupertino, CA'
+        location: 'Cupertino, CA',
+        start_date: '2022-01-01',
+        end_date: undefined
     },
+
     {
         id: '2',
         name: 'Google',
         logo_url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
         website: 'https://google.com',
         description: 'Pioneer in search, cloud computing, and hardware solutions.',
-        location: 'Mountain View, CA'
+        location: 'Mountain View, CA',
+        start_date: '2020-03-15',
+        end_date: '2021-12-31'
     },
     {
         id: '3',
@@ -133,6 +138,9 @@ export const companiesData: Company[] = [
         logo_url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg',
         website: 'https://meta.com',
         description: 'Focusing on social connection and the future of the metaverse.',
-        location: 'Menlo Park, CA'
+        location: 'Menlo Park, CA',
+        start_date: '2018-06-01',
+        end_date: '2020-02-28'
     }
 ];
+

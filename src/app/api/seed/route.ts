@@ -72,8 +72,11 @@ export async function GET() {
                 logo_url: c.logo_url,
                 website: c.website,
                 description: c.description,
-                location: c.location
+                location: c.location,
+                start_date: c.start_date,
+                end_date: c.end_date
             }));
+
 
             const { error: companiesError } = await client
                 .from('companies')

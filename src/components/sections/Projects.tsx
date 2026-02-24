@@ -1,18 +1,20 @@
 "use client";
 
-import { Project } from '@/types';
+import { Project, Skill } from '@/types';
 import { useState } from 'react';
 import { ArrowUpRight, Lock } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface ProjectsProps {
     projects: Project[];
+    skills?: Skill[];
     isAuthorized?: boolean;
 }
 
-export function Projects({ projects, isAuthorized = false }: ProjectsProps) {
+export function Projects({ projects, skills = [], isAuthorized = false }: ProjectsProps) {
     const [filter, setFilter] = useState<"all" | "ios" | "android">("all");
 
     const filteredProjects = projects.filter(p => filter === "all" || p.category === filter);
@@ -67,12 +69,30 @@ export function Projects({ projects, isAuthorized = false }: ProjectsProps) {
                                     </div>
                                 )}
 
-                                <div className="absolute top-4 left-4 flex gap-2">
-                                    {project.tags.map(tag => (
-                                        <span key={tag} className="px-2 py-1 bg-black/40 backdrop-blur-md border border-white/10 rounded text-[10px] font-bold text-slate-300 uppercase tracking-wider">
-                                            {tag}
-                                        </span>
-                                    ))}
+                                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                                    {project.tags.map(tag => {
+                                        // Try to find a matching skill
+                                        const matchingSkill = skills.find(s =>
+                                            s.name.toLowerCase() === tag.toLowerCase() ||
+                                            tag.toLowerCase().includes(s.name.toLowerCase())
+                                        );
+
+                                        if (matchingSkill) {
+                                            const Icon = (LucideIcons as any)[matchingSkill.iconName] || LucideIcons.Code2;
+                                            return (
+                                                <span key={tag} className="flex items-center gap-1.5 px-2 py-1 bg-blue-600/20 backdrop-blur-md border border-blue-500/30 rounded text-[10px] font-bold text-blue-400 uppercase tracking-wider">
+                                                    <Icon size={12} />
+                                                    {matchingSkill.name}
+                                                </span>
+                                            );
+                                        }
+
+                                        return (
+                                            <span key={tag} className="px-2 py-1 bg-black/40 backdrop-blur-md border border-white/10 rounded text-[10px] font-bold text-slate-300 uppercase tracking-wider">
+                                                {tag}
+                                            </span>
+                                        );
+                                    })}
                                 </div>
 
                                 {!isAuthorized && (
@@ -98,10 +118,6 @@ export function Projects({ projects, isAuthorized = false }: ProjectsProps) {
 
                                 <div className="pt-4 border-t border-slate-800/50 flex items-center justify-between">
                                     <span className="text-xs font-mono text-slate-600">2024</span>
-                                    <div className="flex items-center gap-1.5 px-2 py-0.5 bg-green-500/10 rounded-full border border-green-500/20">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                        <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest">Live</span>
-                                    </div>
                                 </div>
                             </div>
                         </Link>

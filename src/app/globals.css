@@ -12,6 +12,20 @@
   --color-navy-800: #151E32;
   --color-navy-700: #1E293B;
 
+  /* HEX Color redefinitions for PDF compatibility (html2canvas fix) */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-900: #0f172a;
+  
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
   --font-sans: var(--font-inter);
 }
 

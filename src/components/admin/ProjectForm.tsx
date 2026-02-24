@@ -18,7 +18,9 @@ interface Project {
     period?: string;
     appStoreUrl?: string;
     playStoreUrl?: string;
+    isPrivate?: boolean;
     link?: string;
+    achievements?: string[];
 }
 
 export function ProjectForm({
@@ -128,13 +130,24 @@ export function ProjectForm({
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-400 ml-1">Full Description</label>
+                <label className="text-sm font-medium text-slate-400 ml-1">Full Description (Public Case Study)</label>
                 <textarea
                     name="description"
                     rows={4}
                     defaultValue={project?.description}
                     className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
                     placeholder="Detailed project case study, technologies used, and outcomes..."
+                />
+            </div>
+
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-400 ml-1">CV Achievements / Bullet Points (One per line)</label>
+                <textarea
+                    name="achievements"
+                    rows={4}
+                    defaultValue={project?.achievements?.join('\n')}
+                    className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                    placeholder="• Developed new features for X&#10;• Optimized performance by Y%&#10;• Led a team of Z..."
                 />
             </div>
 
@@ -204,6 +217,16 @@ export function ProjectForm({
                         className="w-full bg-navy-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
                         placeholder="https://github.com/..."
                     />
+                </div>
+                <div className="flex items-center gap-3 pt-6">
+                    <input
+                        type="checkbox"
+                        name="isPrivate"
+                        value="true"
+                        defaultChecked={project?.isPrivate}
+                        className="w-5 h-5 rounded border-white/10 bg-navy-900/50 text-primary focus:ring-primary/50 transition-all"
+                    />
+                    <label className="text-sm font-medium text-slate-200">Private Project (Hide from public portfolio)</label>
                 </div>
             </div>
 

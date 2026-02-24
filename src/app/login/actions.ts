@@ -24,23 +24,3 @@ export async function login(formData: FormData) {
     revalidatePath('/', 'layout')
     redirect('/')
 }
-
-export async function signup(formData: FormData) {
-    const supabase = createClient()
-
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-
-    const { error } = await (await supabase).auth.signUp({
-        email,
-        password,
-    })
-
-    if (error) {
-        console.error("Signup Error:", error.message)
-        return redirect(`/login?message=${encodeURIComponent(error.message)}`)
-    }
-
-    revalidatePath('/', 'layout')
-    redirect('/')
-}

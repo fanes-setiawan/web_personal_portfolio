@@ -30,7 +30,6 @@ export async function Navbar() {
         { name: 'About', href: '/#about' },
         { name: 'Experience', href: '/#experience' },
         { name: 'Portfolio', href: '/#portfolio' },
-        { name: 'Blog', href: '/blog' },
     ];
 
     const hrNav = [
@@ -40,11 +39,8 @@ export async function Navbar() {
     ];
 
     const adminNav = [
-        { name: 'Analytics', href: '/admin' },
-        { name: 'Manage Company', href: '/admin/company' },
         { name: 'Manage Projects', href: '/admin/projects' },
         { name: 'CV Generator', href: '/cv-generator' },
-        { name: 'Access Requests', href: '/admin/requests' },
     ];
 
     return (

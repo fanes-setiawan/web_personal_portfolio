@@ -8,7 +8,8 @@ import { getProfile, getSkills, getProjects, getCompanies, isUserAuthorized } fr
 export default async function Home() {
   const profile = await getProfile();
   const skills = await getSkills();
-  const projects = await getProjects();
+  const allProjects = await getProjects();
+  const projects = allProjects.filter(p => !p.isPrivate);
   const companies = await getCompanies();
   const isAuthorized = await isUserAuthorized();
 
@@ -30,7 +31,7 @@ export default async function Home() {
       <Hero profile={profile} />
       <Skills skills={skills} />
       <Experience companies={companies} />
-      <Projects projects={projects} isAuthorized={isAuthorized} />
+      <Projects projects={projects} skills={skills} isAuthorized={isAuthorized} />
 
       {/* Contact Section Placeholder */}
       <section id="contact" className="py-20 flex flex-col items-center justify-center text-center">
