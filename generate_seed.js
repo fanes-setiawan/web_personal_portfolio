@@ -1,21 +1,21 @@
 const fs = require('fs');
 
 const profileData = {
-    name: "Marcus Sterling",
-    role: "Senior Mobile Architect",
-    roleSubtitle: "Flutter / iOS / Android",
-    bio: "Building scalable mobile solutions with clean architecture & performance-first mindset. Turning complex ideas into seamless user experiences.",
-    experienceYears: 8,
-    avatarUrl: "/profile-placeholder.jpg",
-    email: "marcus.sterling@dex.io",
-    location: "San Francisco, CA",
-    website: "marcus-mobile.dev",
+    name: "Fanes Setiawan",
+    role: "Software Developer",
+    roleSubtitle: "Web Developer",
+    bio: "Building clean, responsive, and modern web applications.",
+    experienceYears: 1,
+    avatarUrl: "https://ui-avatars.com/api/?name=Fanes+Setiawan&size=256&background=1e293b&color=fff",
+    email: "admin@fanes.online",
+    location: "Indonesia",
+    website: "fanes.online",
     socials: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
     },
     education: [
-        { degree: "B.S. Computer Science", institution: "University of California, Berkeley", period: "2014 — 2018" }
+        { degree: "S1 Teknik Informatika", institution: "Universitas", period: "2020 - 2024" }
     ]
 };
 
