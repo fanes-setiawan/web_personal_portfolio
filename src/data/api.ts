@@ -21,9 +21,6 @@ export async function getProfile(): Promise<Profile | null> {
 
     if (error || !data) return null;
 
-    // 3. Filter Data
-    const isAllowed = role === 'HR' || role === 'SUPER_ADMIN';
-
     return {
         name: data.name,
         role: data.role,
@@ -31,30 +28,14 @@ export async function getProfile(): Promise<Profile | null> {
         bio: data.bio,
         experienceYears: data.experience_years,
         avatarUrl: data.avatar_url,
-        // Sensitive Data Filtering
-        email: isAllowed ? data.email : "Login to view",
-        location: isAllowed ? data.location : "Login to view",
-        website: isAllowed ? data.website : null,
-        socials: isAllowed ? data.socials : {},
-        education: isAllowed ? data.education : [],
-        phone: isAllowed ? data.phone : "Login to view",
-        coreTechStack: isAllowed ? data.core_tech_stack : []
+        email: data.email,
+        location: data.location,
+        website: data.website,
+        socials: data.socials,
+        education: data.education,
+        phone: data.phone,
+        coreTechStack: data.core_tech_stack
     };
-}
-
-export async function isUserAuthorized(): Promise<boolean> {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) return false;
-
-    const { data: userRole } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('email', user.email)
-        .single();
-
-    return userRole?.role === 'HR' || userRole?.role === 'SUPER_ADMIN';
 }
 
 export async function getSkills(): Promise<Skill[]> {

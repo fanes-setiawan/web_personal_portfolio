@@ -34,7 +34,6 @@ export async function createProject(formData: FormData) {
         app_store_url: formData.get('appStoreUrl') as string,
         play_store_url: formData.get('playStoreUrl') as string,
         is_private: formData.get('isPrivate') === 'true',
-        link: formData.get('link') as string,
         achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
         created_at: new Date().toISOString(),
     };
@@ -98,7 +97,6 @@ export async function updateProject(id: string, formData: FormData) {
         app_store_url: formData.get('appStoreUrl') as string,
         play_store_url: formData.get('playStoreUrl') as string,
         is_private: formData.get('isPrivate') === 'true',
-        link: formData.get('link') as string,
         achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
     };
 

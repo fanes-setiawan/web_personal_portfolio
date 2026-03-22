@@ -11,15 +11,13 @@ interface SidebarProps {
         selectedCompanyIds: string[];
     };
     setSettings: any;
-    onExport: () => void;
-    isExporting: boolean;
     projects: Project[];
     companies: Company[];
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 }
 
-export function Sidebar({ settings, setSettings, onExport, isExporting, projects, companies, isOpen, setIsOpen }: SidebarProps) {
+export function Sidebar({ settings, setSettings, projects, companies, isOpen, setIsOpen }: SidebarProps) {
     const [isProjectsOpen, setIsProjectsOpen] = useState(false);
     const [isCompaniesOpen, setIsCompaniesOpen] = useState(false);
 
@@ -192,27 +190,6 @@ export function Sidebar({ settings, setSettings, onExport, isExporting, projects
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="mt-auto pt-6 border-t border-slate-800 shrink-0">
-                    <button
-                        onClick={onExport}
-                        disabled={isExporting}
-                        className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20"
-                    >
-                        {isExporting ? (
-                            <>
-                                <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
-                                Generating...
-                            </>
-                        ) : (
-                            <>
-                                <FileDown size={18} />
-                                Generate PDF
-                            </>
-                        )}
-                    </button>
-                    <p className="text-xs text-slate-600 text-center mt-3">Export Version v1.4 (Standard)</p>
                 </div>
             </aside>
         </>

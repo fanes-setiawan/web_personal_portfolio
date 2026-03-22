@@ -44,12 +44,7 @@ export function Navbar() {
         { name: 'About', href: '/#about' },
         { name: 'Experience', href: '/#experience' },
         { name: 'Portfolio', href: '/#portfolio' },
-    ];
-
-    const hrNav = [
-        { name: 'Experience', href: '/#experience' },
-        { name: 'Portfolio', href: '/#portfolio' },
-        { name: 'Technical Docs', href: '/docs' },
+        { name: 'CV', href: '/docs' },
     ];
 
     const adminNav = [
@@ -76,22 +71,6 @@ export function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <span className="text-slate-700">|</span>
-                            <Link href="/login" className="text-slate-400 hover:text-white transition-colors">
-                                HR Login
-                            </Link>
-                        </>
-                    )}
-
-                    {user && role === 'HR' && (
-                        <>
-                            {hrNav.map(link => (
-                                <Link key={link.name} href={link.href} className="hover:text-white transition-colors">
-                                    {link.name}
-                                </Link>
-                            ))}
-                            <span className="text-slate-700">|</span>
-                            <LogoutButton />
                         </>
                     )}
 
@@ -108,10 +87,10 @@ export function Navbar() {
                     )}
 
                     {!user && (
-                        <button className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-colors text-xs font-semibold tracking-wider">
+                        <a href={`mailto:${profile?.email || ''}`} className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-colors text-xs font-semibold tracking-wider">
                             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                             HIRE ME
-                        </button>
+                        </a>
                     )}
                 </div>
 
@@ -141,34 +120,10 @@ export function Navbar() {
                                     </Link>
                                 ))}
                                 <div className="h-px bg-white/5 my-2" />
-                                <Link
-                                    href="/login"
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-lg font-bold text-slate-400"
-                                >
-                                    HR Login
-                                </Link>
-                                <button className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20">
+                                <a href={`mailto:${profile?.email || ''}`} className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20">
                                     <Rocket size={20} />
                                     HIRE ME
-                                </button>
-                            </>
-                        )}
-
-                        {user && role === 'HR' && (
-                            <>
-                                {hrNav.map(link => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-lg font-bold text-white hover:text-blue-400 transition-colors"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                                <div className="h-px bg-white/5 my-2" />
-                                <LogoutButton />
+                                </a>
                             </>
                         )}
 

@@ -5,11 +5,9 @@ import { TechArchitecture } from '@/components/case-study/TechArchitecture';
 import { Challenges } from '@/components/case-study/Challenges';
 import { Gallery } from '@/components/case-study/Gallery';
 import { ImpactResults } from '@/components/case-study/ImpactResults';
-import { getProjectById, getProjects, isUserAuthorized } from '@/data/api';
+import { getProjectById, getProjects } from '@/data/api';
 import { createStaticClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
-import { Lock, UserCircle } from 'lucide-react';
-import Link from 'next/link';
 
 interface PageProps {
     params: Promise<{ id: string }>;
@@ -18,38 +16,9 @@ interface PageProps {
 export default async function CaseStudyPage({ params }: PageProps) {
     const { id } = await params;
     const project = await getProjectById(id);
-    const isAuthorized = await isUserAuthorized();
 
     if (!project) {
         return notFound();
-    }
-
-    if (!isAuthorized) {
-        return (
-            <MainLayout>
-                <div className="min-h-[60vh] flex flex-col items-center justify-center py-20 px-4 text-center">
-                    <div className="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center mb-8 border border-blue-500/20">
-                        <Lock className="text-blue-400" size={40} />
-                    </div>
-                    <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tight">Restricted Access</h1>
-                    <p className="text-slate-400 max-w-lg mb-12 text-lg leading-relaxed">
-                        To protect sensitive business logic and technical architecture details, full case studies are only visible to verified <span className="text-blue-400 font-bold">HR Personnel</span> or <span className="text-blue-400 font-bold">Collaborators</span>.
-                    </p>
-
-                    <Link
-                        href="/login"
-                        className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg flex items-center gap-3 transition-all shadow-lg shadow-blue-900/40 hover:scale-105 active:scale-95"
-                    >
-                        <UserCircle size={24} />
-                        Login as HR to Continue
-                    </Link>
-
-                    <Link href="/#portfolio" className="mt-8 text-slate-500 hover:text-white transition-colors flex items-center gap-2 font-medium">
-                        Back to Portfolio
-                    </Link>
-                </div>
-            </MainLayout>
-        );
     }
 
     return (

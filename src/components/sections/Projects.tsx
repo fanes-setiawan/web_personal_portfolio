@@ -11,10 +11,9 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 interface ProjectsProps {
     projects: Project[];
     skills?: Skill[];
-    isAuthorized?: boolean;
 }
 
-export function Projects({ projects, skills = [], isAuthorized = false }: ProjectsProps) {
+export function Projects({ projects, skills = [] }: ProjectsProps) {
     const [filter, setFilter] = useState<"all" | "ios" | "android">("all");
 
     const filteredProjects = projects.filter(p => filter === "all" || p.category === filter);
@@ -51,7 +50,7 @@ export function Projects({ projects, skills = [], isAuthorized = false }: Projec
                 {filteredProjects.map((project, index) => (
                     <ScrollReveal key={project.id} delay={index * 0.1} distance={30}>
                         <Link
-                            href={isAuthorized ? `/projects/${project.id}` : "/login"}
+                            href={`/projects/${project.id}`}
                             className="group relative bg-[#0F1629] rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-600 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/5 flex flex-col h-full cursor-pointer"
                         >
                             {/* Image Area */}
@@ -94,13 +93,6 @@ export function Projects({ projects, skills = [], isAuthorized = false }: Projec
                                         );
                                     })}
                                 </div>
-
-                                {!isAuthorized && (
-                                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-4 text-center">
-                                        <Lock className="text-blue-400 mb-2" size={24} />
-                                        <p className="text-white text-xs font-bold leading-tight">LOGIN AS HR TO<br />VIEW CASE STUDY</p>
-                                    </div>
-                                )}
                             </div>
 
                             {/* Content Area */}
@@ -108,7 +100,7 @@ export function Projects({ projects, skills = [], isAuthorized = false }: Projec
                                 <div className="flex items-start justify-between mb-3">
                                     <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors uppercase tracking-tight">{project.title}</h3>
                                     <div className="p-2 bg-slate-800 group-hover:bg-blue-600 rounded-full text-slate-400 group-hover:text-white transition-all shadow-lg active:scale-90">
-                                        {isAuthorized ? <ArrowUpRight size={18} /> : <Lock size={18} className="text-slate-500 group-hover:text-blue-200" />}
+                                        <ArrowUpRight size={18} />
                                     </div>
                                 </div>
 

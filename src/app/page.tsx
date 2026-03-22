@@ -3,15 +3,13 @@ import { Hero } from '@/components/sections/Hero';
 import { Skills } from '@/components/sections/Skills';
 import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
-import { getProfile, getSkills, getProjects, getCompanies, isUserAuthorized } from '@/data/api';
+import { getProfile, getSkills, getProjects, getCompanies } from '@/data/api';
 
 export default async function Home() {
   const profile = await getProfile();
   const skills = await getSkills();
-  const allProjects = await getProjects();
-  const projects = allProjects.filter(p => !p.isPrivate);
+  const projects = await getProjects();
   const companies = await getCompanies();
-  const isAuthorized = await isUserAuthorized();
 
   if (!profile) {
     return (
@@ -31,7 +29,7 @@ export default async function Home() {
       <Hero profile={profile} />
       <Skills skills={skills} />
       <Experience companies={companies} />
-      <Projects projects={projects} skills={skills} isAuthorized={isAuthorized} />
+      <Projects projects={projects} skills={skills} />
 
       {/* Contact Section Placeholder */}
       <section id="contact" className="py-20 flex flex-col items-center justify-center text-center">
@@ -40,18 +38,9 @@ export default async function Home() {
           Available for contract roles and collaborative projects.
         </p>
 
-        {profile.email.includes("Login") ? (
-          <div className="flex flex-col items-center gap-4">
-            <p className="text-yellow-500 font-medium">Please login as HR to view contact details.</p>
-            <a href="/login" className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-bold text-lg transition-all border border-slate-700">
-              Login to Hire Me
-            </a>
-          </div>
-        ) : (
-          <a href={`mailto:${profile.email}`} className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-lg transition-all shadow-lg shadow-blue-900/40">
-            Hire Me
-          </a>
-        )}
+        <a href={`mailto:${profile.email}`} className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-lg transition-all shadow-lg shadow-blue-900/40">
+          Hire Me
+        </a>
       </section>
     </MainLayout>
   );
