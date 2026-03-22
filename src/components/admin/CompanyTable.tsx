@@ -40,9 +40,9 @@ export function CompanyTable({ companies, onEdit }: { companies: Company[], onEd
                         <tr key={company.id} className="hover:bg-white/5 transition-colors group">
                             <td className="px-6 py-4">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center p-1 overflow-hidden">
+                                    <div className="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
                                         {company.logo_url ? (
-                                            <img src={company.logo_url} alt={company.name} className="w-full h-full object-contain" />
+                                            <img src={company.logo_url} alt={company.name} className="w-full h-full object-cover" />
                                         ) : (
                                             <span className="text-xl">🏢</span>
                                         )}

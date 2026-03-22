@@ -33,12 +33,13 @@ export function Experience({ companies }: ExperienceProps) {
                             >
                                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
                                     {/* Logo / Icon */}
-                                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-navy-900 border border-white/10 flex items-center justify-center overflow-hidden">
+                                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-navy-900 border border-white/10 flex items-center justify-center overflow-hidden relative">
                                         {company.logo_url ? (
-                                            <img
+                                            <Image
                                                 src={company.logo_url}
-                                                alt={company.name}
-                                                className="w-full h-full object-contain p-2"
+                                                alt={`${company.name} logo`}
+                                                fill
+                                                className="w-full h-full object-cover"
                                                 onError={(e) => {
                                                     (e.target as HTMLImageElement).src = 'https://api.dicebear.com/7.x/initials/svg?seed=' + company.name;
                                                 }}
