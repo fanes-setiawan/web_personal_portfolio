@@ -28,10 +28,10 @@ export default async function Home() {
     <MainLayout>
       <Hero profile={profile} />
       <Skills skills={skills} />
-      <Experience companies={companies} />
+      <Experience companies={companies} education={profile.education} />
       <Projects projects={projects} skills={skills} />
 
-      {/* Contact Section Placeholder */}
+      {/* Contact Section */}
       <section id="contact" className="py-20 flex flex-col items-center justify-center text-center">
         <h2 className="text-4xl font-bold text-white mb-6">Let&apos;s build something great.</h2>
         <p className="text-slate-400 max-w-lg mb-8">
@@ -45,4 +45,3 @@ export default async function Home() {
     </MainLayout>
   );
 }
-

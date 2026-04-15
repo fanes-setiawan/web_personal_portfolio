@@ -1,5 +1,5 @@
 import { Profile } from '@/types';
-import { Mail, ArrowRight, CheckCircle2, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, ArrowRight, CheckCircle2, Github, Linkedin, Twitter, FileDown, MessageCircle } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface HeroProps {
@@ -40,29 +40,47 @@ export function Hero({ profile }: HeroProps) {
                 </div>
 
                 <ScrollReveal delay={0.5}>
-                    <p className="text-base md:text-lg text-slate-400 max-w-lg leading-relaxed mx-auto md:mx-0">
-                        {profile.bio}
-                    </p>
+                    <div className="space-y-6">
+                        <p className="text-base md:text-lg text-slate-400 max-w-lg leading-relaxed mx-auto md:mx-0">
+                            {profile.bio}
+                        </p>
+
+                        {/* Core Tech Stack Badges */}
+                        {profile.coreTechStack && profile.coreTechStack.length > 0 && (
+                            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-2">
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mr-2 block w-full md:w-auto mb-2 md:mb-0">Core Tech:</span>
+                                {profile.coreTechStack.map((tech) => (
+                                    <span key={tech} className="px-2.5 py-1 bg-slate-800/50 border border-slate-700/50 rounded text-[10px] font-bold text-slate-300 uppercase tracking-wider">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </ScrollReveal>
 
-                <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 justify-center md:justify-start">
+                <div className="flex flex-col sm:flex-row items-center gap-6 pt-4 justify-center md:justify-start">
                     <ScrollReveal delay={0.6} width="100%" className="sm:w-auto">
-                        <a href="#portfolio" className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20">
-                            View Portfolio <ArrowRight size={18} />
+                        <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-blue-900/30 hover:-translate-y-1 active:scale-95">
+                            View Portfolio <ArrowRight size={20} />
                         </a>
                     </ScrollReveal>
 
-                    <ScrollReveal delay={0.7} width="100%" className="sm:w-auto">
-                        {profile.email.includes("Login") ? (
-                            <a href="/login" className="w-full sm:w-auto px-6 py-3 border border-slate-700 hover:border-slate-600 text-white rounded-lg font-medium transition-all flex justify-center">
-                                Login to Contact
+                    {profile.cvUrl && (
+                        <ScrollReveal delay={0.7} width="fit-content">
+                            <a
+                                href={profile.cvUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-2 text-slate-400 hover:text-white transition-all font-semibold"
+                            >
+                                <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-colors">
+                                    <FileDown size={20} />
+                                </div>
+                                <span className="border-b border-transparent group-hover:border-blue-500/50 pb-0.5">Download CV</span>
                             </a>
-                        ) : (
-                            <a href={`mailto:${profile.email}`} className="w-full sm:w-auto px-6 py-3 border border-slate-700 hover:border-slate-600 text-white rounded-lg font-medium transition-all flex justify-center">
-                                Contact Me
-                            </a>
-                        )}
-                    </ScrollReveal>
+                        </ScrollReveal>
+                    )}
                 </div>
 
                 {/* Social Media Links */}
@@ -93,8 +111,21 @@ export function Hero({ profile }: HeroProps) {
                             </a>
                         </ScrollReveal>
                     )}
-                    {profile.socials?.twitter && (
+                    {profile.socials?.whatsapp && (
                         <ScrollReveal delay={1.0} width="fit-content">
+                            <a
+                                href={profile.socials.whatsapp.startsWith('http') ? profile.socials.whatsapp : `https://wa.me/${profile.socials.whatsapp}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-slate-400 hover:text-green-400 transition-colors"
+                                title="WhatsApp"
+                            >
+                                <MessageCircle size={24} />
+                            </a>
+                        </ScrollReveal>
+                    )}
+                    {profile.socials?.twitter && (
+                        <ScrollReveal delay={1.1} width="fit-content">
                             <a
                                 href={profile.socials.twitter}
                                 target="_blank"

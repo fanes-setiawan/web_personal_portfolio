@@ -5,9 +5,10 @@ import Image from 'next/image';
 
 interface CaseStudyHeaderProps {
     project: Project;
+    isLoggedIn?: boolean;
 }
 
-export function CaseStudyHeader({ project }: CaseStudyHeaderProps) {
+export function CaseStudyHeader({ project, isLoggedIn = false }: CaseStudyHeaderProps) {
     return (
         <header className="pt-8 pb-16">
             <div className="flex items-center justify-between mb-12">
@@ -17,17 +18,19 @@ export function CaseStudyHeader({ project }: CaseStudyHeaderProps) {
                     </div>
                     <span className="text-sm font-medium">Back to Portfolio</span>
                 </Link>
-                <div className="flex gap-4">
-                    <button className="p-2 text-slate-400 hover:text-white transition-colors">
-                        <Share2 size={20} />
-                    </button>
-                    <Link
-                        href={`/admin/projects`}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg flex items-center gap-2 transition-colors"
-                    >
-                        Edit Case Study
-                    </Link>
-                </div>
+                {isLoggedIn && (
+                    <div className="flex gap-4">
+                        <button className="p-2 text-slate-400 hover:text-white transition-colors">
+                            <Share2 size={20} />
+                        </button>
+                        <Link
+                            href={`/admin/projects`}
+                            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg flex items-center gap-2 transition-colors"
+                        >
+                            Edit Case Study
+                        </Link>
+                    </div>
+                )}
             </div>
 
             {/* Hero Image Section */}

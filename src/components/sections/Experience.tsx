@@ -1,16 +1,17 @@
 "use client";
 
-import { Company } from '@/types';
-import { Building2, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Company, Education } from '@/types';
+import { Building2, Calendar, MapPin, ExternalLink, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface ExperienceProps {
     companies: Company[];
+    education?: Education[];
 }
 
-export function Experience({ companies }: ExperienceProps) {
-    if (companies.length === 0) return null;
+export function Experience({ companies, education = [] }: ExperienceProps) {
+    if (companies.length === 0 && education.length === 0) return null;
 
     return (
         <section id="experience" className="py-20 relative overflow-hidden">
@@ -116,6 +117,40 @@ export function Experience({ companies }: ExperienceProps) {
                         </ScrollReveal>
                     ))}
                 </div>
+
+                {/* Education Section */}
+                {education.length > 0 && (
+                    <div className="mt-20">
+                        <ScrollReveal>
+                            <div className="mb-12">
+                                <h3 className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-2 text-center md:text-left">Academic Background</h3>
+                                <h2 className="text-3xl md:text-4xl font-bold text-white text-center md:text-left">Education</h2>
+                            </div>
+                        </ScrollReveal>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {education.map((edu, idx) => (
+                                <ScrollReveal key={idx} delay={idx * 0.1} distance={20}>
+                                    <div className="bg-white/5 border border-white/5 rounded-2xl p-6 hover:bg-white/[0.07] hover:border-white/10 transition-all group">
+                                        <div className="flex gap-4">
+                                            <div className="w-12 h-12 shrink-0 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                                                <GraduationCap className="text-blue-400" size={24} />
+                                            </div>
+                                            <div>
+                                                <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors uppercase tracking-tight">{edu.degree}</h4>
+                                                <p className="text-slate-400 text-sm font-medium mb-2">{edu.institution}</p>
+                                                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold text-blue-500/80 uppercase tracking-widest">
+                                                    <Calendar size={12} />
+                                                    {edu.period}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -53,6 +53,7 @@ export interface Project {
     playStoreUrl?: string;
     achievements?: string[]; // For CV bullet points
     isPrivate?: boolean; // For CV categorization
+    created_at?: string;
 }
 
 export interface Education {
@@ -88,6 +89,7 @@ export interface Profile {
     experienceYears: number;
     avatarUrl: string;
     email: string;
+    cvUrl?: string;
     location?: string; // For CV
     phone?: string; // For CV
     website?: string; // For CV

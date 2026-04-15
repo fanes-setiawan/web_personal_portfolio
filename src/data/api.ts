@@ -29,6 +29,7 @@ export async function getProfile(): Promise<Profile | null> {
         experienceYears: data.experience_years,
         avatarUrl: data.avatar_url,
         email: data.email,
+        cvUrl: data.cv_url,
         location: data.location,
         website: data.website,
         socials: data.socials,
@@ -81,6 +82,7 @@ export async function getProjects(supabaseClient?: any): Promise<Project[]> {
         stats: item.stats,
         caseStudy: item.case_study,
         isPrivate: item.is_private,
+        created_at: item.created_at,
     }));
 }
 
@@ -111,6 +113,7 @@ export async function getProjectById(id: string, supabaseClient?: any): Promise<
         stats: data.stats,
         caseStudy: data.case_study,
         isPrivate: data.is_private,
+        created_at: data.created_at,
     };
 }
 

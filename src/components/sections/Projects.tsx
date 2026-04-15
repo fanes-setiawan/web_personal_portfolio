@@ -109,7 +109,9 @@ export function Projects({ projects, skills = [] }: ProjectsProps) {
                                 </p>
 
                                 <div className="pt-4 border-t border-slate-800/50 flex items-center justify-between">
-                                    <span className="text-xs font-mono text-slate-600">2024</span>
+                                    <span className="text-xs font-mono text-slate-600">
+                                        {project.created_at ? new Date(project.created_at).getFullYear() : '2024'}
+                                    </span>
                                 </div>
                             </div>
                         </Link>

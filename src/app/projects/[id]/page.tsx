@@ -6,7 +6,7 @@ import { Challenges } from '@/components/case-study/Challenges';
 import { Gallery } from '@/components/case-study/Gallery';
 import { ImpactResults } from '@/components/case-study/ImpactResults';
 import { getProjectById, getProjects } from '@/data/api';
-import { createStaticClient } from '@/utils/supabase/server';
+import { createStaticClient, createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
@@ -17,6 +17,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
     const { id } = await params;
     const project = await getProjectById(id);
 
+    // Check if user is logged in
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    const isLoggedIn = !!user;
+
     if (!project) {
         return notFound();
     }
@@ -24,7 +29,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
     return (
         <MainLayout>
             <article className="max-w-5xl mx-auto px-4">
-                <CaseStudyHeader project={project} />
+                <CaseStudyHeader project={project} isLoggedIn={isLoggedIn} />
 
                 {project.caseStudy ? (
                     <>
