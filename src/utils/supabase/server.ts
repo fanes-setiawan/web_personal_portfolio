@@ -7,8 +7,7 @@ export async function createClient() {
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!url || !key) {
-        console.error('Supabase environment variables are missing at runtime.');
-        return null;
+        throw new Error('Supabase environment variables (URL/KEY) are missing. Please check your dashboard settings.');
     }
 
     const cookieStore = await cookies()
@@ -40,8 +39,7 @@ export function createStaticClient() {
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!url || !key) {
-        console.warn('Supabase environment variables are missing. Static generation may fail.');
-        return null;
+        throw new Error('Supabase environment variables (URL/KEY) are missing. Static generation failed.');
     }
 
     return createSupabaseClient(url, key);

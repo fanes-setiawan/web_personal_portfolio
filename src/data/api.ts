@@ -3,7 +3,6 @@ import { Profile, Project, Skill, Company } from '@/types';
 
 export async function getProfile(): Promise<Profile | null> {
     const supabase = await createClient();
-    if (!supabase) return null;
 
     // 1. Get current user & Role
     const { data: { user } } = await supabase.auth.getUser();
@@ -42,7 +41,6 @@ export async function getProfile(): Promise<Profile | null> {
 
 export async function getSkills(): Promise<Skill[]> {
     const supabase = await createClient();
-    if (!supabase) return [];
     const { data, error } = await supabase
         .from('skills')
         .select('*')
@@ -60,7 +58,6 @@ export async function getSkills(): Promise<Skill[]> {
 
 export async function getProjects(supabaseClient?: any): Promise<Project[]> {
     const supabase = supabaseClient || await createClient();
-    if (!supabase) return [];
     const { data, error } = await supabase
         .from('projects')
         .select('*')
@@ -91,7 +88,6 @@ export async function getProjects(supabaseClient?: any): Promise<Project[]> {
 
 export async function getProjectById(id: string, supabaseClient?: any): Promise<Project | null> {
     const supabase = supabaseClient || await createClient();
-    if (!supabase) return null;
     const { data, error } = await supabase
         .from('projects')
         .select('*')
@@ -123,7 +119,6 @@ export async function getProjectById(id: string, supabaseClient?: any): Promise<
 
 export async function getCompanies(): Promise<Company[]> {
     const supabase = await createClient();
-    if (!supabase) return [];
     const { data, error } = await supabase
         .from('companies')
         .select(`
