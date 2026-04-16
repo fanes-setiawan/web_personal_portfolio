@@ -5,7 +5,7 @@ const BUCKET_NAME = 'Assets';
 export async function uploadFile(file: File, path: string) {
     const supabase = await createClient();
 
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabase!.storage
         .from(BUCKET_NAME)
         .upload(path, file, {
             cacheControl: '3600',
@@ -16,7 +16,7 @@ export async function uploadFile(file: File, path: string) {
         throw new Error(error.message);
     }
 
-    const { data: { publicUrl } } = supabase.storage
+    const { data: { publicUrl } } = supabase!.storage
         .from(BUCKET_NAME)
         .getPublicUrl(data.path);
 
@@ -26,7 +26,7 @@ export async function uploadFile(file: File, path: string) {
 export async function deleteFile(path: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase.storage
+    const { error } = await supabase!.storage
         .from(BUCKET_NAME)
         .remove([path]);
 
@@ -41,7 +41,7 @@ export async function getStorageStats() {
     // listing all files to calculate size
     // Note: Supabase Storage API doesn't have a direct "get bucket size" for all users
     // We iterate through folders if necessary, but here we list the root Assets.
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabase!.storage
         .from(BUCKET_NAME)
         .list('', {
             limit: 1000,

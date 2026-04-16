@@ -39,7 +39,7 @@ export async function createProject(formData: FormData) {
     };
 
 
-    const { error } = await supabase.from('projects').insert(projectData);
+    const { error } = await supabase!.from('projects').insert(projectData);
 
     if (error) {
         console.error('Create Project Error:', error);
@@ -54,7 +54,7 @@ export async function createProject(formData: FormData) {
 export async function deleteProject(id: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('projects')
         .delete()
         .eq('id', id);
@@ -100,7 +100,7 @@ export async function updateProject(id: string, formData: FormData) {
         achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
     };
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('projects')
         .update(projectData)
         .eq('id', id);

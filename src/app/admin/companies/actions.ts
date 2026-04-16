@@ -17,7 +17,7 @@ export async function createCompany(formData: FormData) {
         technologies: (formData.get('technologies') as string)?.split(',').map(t => t.trim()).filter(Boolean) || [],
     };
 
-    const { data: newCompany, error } = await supabase
+    const { data: newCompany, error } = await supabase!
         .from('companies')
         .insert(companyData)
         .select()
@@ -34,7 +34,7 @@ export async function createCompany(formData: FormData) {
             company_id: newCompany.id,
             technology_id: techId
         }));
-        const { error: techError } = await supabase
+        const { error: techError } = await supabase!
             .from('company_technologies')
             .insert(junctionData);
 
@@ -60,7 +60,7 @@ export async function updateCompany(id: string, formData: FormData) {
         technologies: (formData.get('technologies') as string)?.split(',').map(t => t.trim()).filter(Boolean) || [],
     };
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('companies')
         .update(companyData)
         .eq('id', id);
@@ -73,7 +73,7 @@ export async function updateCompany(id: string, formData: FormData) {
     const techIds = formData.getAll('technologies') as string[];
 
     // Delete existing
-    await supabase
+    await supabase!
         .from('company_technologies')
         .delete()
         .eq('company_id', id);
@@ -84,7 +84,7 @@ export async function updateCompany(id: string, formData: FormData) {
             company_id: id,
             technology_id: techId
         }));
-        const { error: techError } = await supabase
+        const { error: techError } = await supabase!
             .from('company_technologies')
             .insert(junctionData);
 
@@ -99,7 +99,7 @@ export async function updateCompany(id: string, formData: FormData) {
 export async function deleteCompany(id: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('companies')
         .delete()
         .eq('id', id);

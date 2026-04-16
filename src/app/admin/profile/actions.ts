@@ -25,7 +25,7 @@ export async function updateProfileAction(formData: FormData) {
         core_tech_stack: (formData.get('coreTechStack') as string || '').split(',').map(s => s.trim()).filter(Boolean)
     };
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('profile')
         .update(profileData)
         .eq('id', formData.get('id') as string);

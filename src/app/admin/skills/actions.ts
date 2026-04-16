@@ -12,7 +12,7 @@ export async function createSkill(formData: FormData) {
         level: parseInt(formData.get('level') as string) || 0,
     };
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('skills')
         .insert(skillData);
 
@@ -33,7 +33,7 @@ export async function updateSkill(id: string, formData: FormData) {
         level: parseInt(formData.get('level') as string) || 0,
     };
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('skills')
         .update(skillData)
         .eq('id', id);
@@ -49,7 +49,7 @@ export async function updateSkill(id: string, formData: FormData) {
 export async function deleteSkill(id: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('skills')
         .delete()
         .eq('id', id);

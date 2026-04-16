@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 export async function createTechnology(name: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('technologies')
         .insert({ name });
 
@@ -21,7 +21,7 @@ export async function createTechnology(name: string) {
 export async function updateTechnology(id: string, name: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('technologies')
         .update({ name })
         .eq('id', id);
@@ -37,7 +37,7 @@ export async function updateTechnology(id: string, name: string) {
 export async function deleteTechnology(id: string) {
     const supabase = await createClient();
 
-    const { error } = await supabase
+    const { error } = await supabase!
         .from('technologies')
         .delete()
         .eq('id', id);
