@@ -14,14 +14,14 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
         !pathname.startsWith('/api') && 
         !pathname.includes('.')
     ) {
-        // Use event.waitUntil so the request isn't blocked by the Discord notification
-        event.waitUntil(
-            (async () => {
-                const info = await getVisitorInfo(request, 'PAGE_VIEW')
-                info.email = user?.email // Capture logged-in email
-                await sendDiscordNotification(info)
-            })()
-        )
+        // Use await instead of waitUntil to ensure log is sent before request finishes (for debugging)
+        try {
+            const info = await getVisitorInfo(request, 'PAGE_VIEW')
+            info.email = user?.email
+            await sendDiscordNotification(info)
+        } catch (err) {
+            console.error('Middleware logging failed:', err)
+        }
     }
 
     return supabaseResponse

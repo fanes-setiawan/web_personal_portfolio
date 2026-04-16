@@ -97,7 +97,8 @@ export async function getVisitorInfo(req: NextRequest, event: VisitorInfo['event
     const { device, browser, os } = userAgent(req);
     
     // Get IP (handling proxy headers)
-    const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+    const ip = req.headers.get('cf-connecting-ip') || 
+               req.headers.get('x-forwarded-for')?.split(',')[0] || 
                req.headers.get('x-real-ip') || 
                'Unknown';
 
