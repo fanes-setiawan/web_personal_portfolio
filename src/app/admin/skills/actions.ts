@@ -2,9 +2,10 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export async function createSkill(formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const skillData = {
         name: formData.get('name') as string,
@@ -25,7 +26,7 @@ export async function createSkill(formData: FormData) {
 }
 
 export async function updateSkill(id: string, formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const skillData = {
         name: formData.get('name') as string,
@@ -47,7 +48,7 @@ export async function updateSkill(id: string, formData: FormData) {
 }
 
 export async function deleteSkill(id: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('skills')

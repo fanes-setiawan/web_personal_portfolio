@@ -2,9 +2,10 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export async function createTechnology(name: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('technologies')
@@ -19,7 +20,7 @@ export async function createTechnology(name: string) {
 }
 
 export async function updateTechnology(id: string, name: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('technologies')
@@ -35,7 +36,7 @@ export async function updateTechnology(id: string, name: string) {
 }
 
 export async function deleteTechnology(id: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('technologies')

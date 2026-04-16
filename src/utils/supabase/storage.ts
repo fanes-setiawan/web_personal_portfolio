@@ -1,9 +1,10 @@
 import { createClient } from './server';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 const BUCKET_NAME = 'Assets';
 
 export async function uploadFile(file: File, path: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { data, error } = await supabase!.storage
         .from(BUCKET_NAME)
@@ -24,7 +25,7 @@ export async function uploadFile(file: File, path: string) {
 }
 
 export async function deleteFile(path: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!.storage
         .from(BUCKET_NAME)
@@ -36,7 +37,7 @@ export async function deleteFile(path: string) {
 }
 
 export async function getStorageStats() {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     // listing all files to calculate size
     // Note: Supabase Storage API doesn't have a direct "get bucket size" for all users

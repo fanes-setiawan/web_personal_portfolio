@@ -2,9 +2,10 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export async function createCompany(formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const companyData = {
         name: formData.get('name') as string,
@@ -47,7 +48,7 @@ export async function createCompany(formData: FormData) {
 }
 
 export async function updateCompany(id: string, formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const companyData = {
         name: formData.get('name') as string,
@@ -97,7 +98,7 @@ export async function updateCompany(id: string, formData: FormData) {
 }
 
 export async function deleteCompany(id: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('companies')

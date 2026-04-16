@@ -2,9 +2,10 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export async function updateProfileAction(formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const profileData = {
         name: formData.get('name') as string,

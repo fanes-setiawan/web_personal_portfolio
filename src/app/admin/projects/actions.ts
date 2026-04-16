@@ -3,9 +3,10 @@
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export async function createProject(formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     // Basic validation
     const title = formData.get('title') as string;
@@ -52,7 +53,7 @@ export async function createProject(formData: FormData) {
 }
 
 export async function deleteProject(id: string) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const { error } = await supabase!
         .from('projects')
@@ -69,7 +70,7 @@ export async function deleteProject(id: string) {
 }
 
 export async function updateProject(id: string, formData: FormData) {
-    const supabase = await createClient();
+    const supabase: SupabaseClient = (await createClient())!;
 
     const title = formData.get('title') as string;
     const category = formData.get('category') as string;
