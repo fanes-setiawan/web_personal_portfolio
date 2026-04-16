@@ -3,6 +3,7 @@ import { getProfile } from '@/data/api';
 import { ContactFloatingButton } from '@/components/ui/ContactFloatingButton';
 import { BackgroundOrbs } from '@/components/ui/BackgroundOrbs';
 import { GridPattern } from '@/components/ui/GridPattern';
+import { ParticlesBackground } from '@/components/ui/ParticlesBackground';
 
 export async function MainLayout({ children }: { children: React.ReactNode }) {
     const profile = await getProfile();
@@ -12,6 +13,7 @@ export async function MainLayout({ children }: { children: React.ReactNode }) {
             <div className="fixed inset-0 bg-[#0B1121] -z-30" />
             <BackgroundOrbs />
             <GridPattern />
+            <ParticlesBackground />
             <div className="max-w-7xl mx-auto relative z-10">
                 <Navbar />
                 <main className="px-4 md:px-12 pb-20">
