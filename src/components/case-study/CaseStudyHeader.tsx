@@ -99,10 +99,13 @@ export function CaseStudyHeader({ project, isLoggedIn = false }: CaseStudyHeader
                                     href={project.appStoreUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-5 py-2.5 bg-white text-black hover:bg-slate-200 transition-colors rounded-xl font-bold text-xs"
+                                    className="transition-transform hover:scale-105"
                                 >
-                                    <Apple size={18} fill="currentColor" />
-                                    App Store
+                                    <img 
+                                        src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
+                                        alt="Download on the App Store" 
+                                        className="h-10 w-auto"
+                                    />
                                 </a>
                             )}
                             {project.playStoreUrl && (
@@ -110,10 +113,13 @@ export function CaseStudyHeader({ project, isLoggedIn = false }: CaseStudyHeader
                                     href={project.playStoreUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-5 py-2.5 bg-slate-800 border border-slate-700 text-white hover:bg-slate-700 transition-colors rounded-xl font-bold text-xs"
+                                    className="transition-transform hover:scale-105"
                                 >
-                                    <Play size={16} fill="currentColor" />
-                                    Google Play
+                                    <img 
+                                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                                        alt="Get it on Google Play" 
+                                        className="h-10 w-auto"
+                                    />
                                 </a>
                             )}
                         </div>

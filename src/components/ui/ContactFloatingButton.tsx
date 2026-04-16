@@ -33,8 +33,12 @@ export function ContactFloatingButton({ whatsappUrl, email }: ContactFloatingBut
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-4 p-3 hover:bg-green-500/10 rounded-xl transition-all group"
                             >
-                                <div className="p-2 bg-green-500/20 text-green-500 rounded-lg group-hover:scale-110 transition-transform">
-                                    <MessageCircle size={20} />
+                                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors group-hover:scale-110">
+                                    <img 
+                                        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                                        alt="WhatsApp" 
+                                        className="w-5 h-5"
+                                    />
                                 </div>
                                 <div>
                                     <p className="text-sm font-bold text-white">WhatsApp</p>
@@ -48,8 +52,12 @@ export function ContactFloatingButton({ whatsappUrl, email }: ContactFloatingBut
                                 href={`mailto:${email}`}
                                 className="flex items-center gap-4 p-3 hover:bg-blue-500/10 rounded-xl transition-all group"
                             >
-                                <div className="p-2 bg-blue-500/20 text-blue-400 rounded-lg group-hover:scale-110 transition-transform">
-                                    <Mail size={20} />
+                                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors group-hover:scale-110">
+                                    <img 
+                                        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" 
+                                        alt="Gmail" 
+                                        className="w-5 h-5"
+                                    />
                                 </div>
                                 <div>
                                     <p className="text-sm font-bold text-white">Email Me</p>

@@ -89,10 +89,14 @@ export function Hero({ profile }: HeroProps) {
                                 href={profile.socials.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-white transition-colors"
+                                className="transition-transform hover:scale-110"
                                 title="GitHub"
                             >
-                                <Github size={24} />
+                                <img 
+                                    src="https://www.vectorlogo.zone/logos/github/github-tile.svg" 
+                                    alt="GitHub" 
+                                    className="w-7 h-7 object-contain invert"
+                                />
                             </a>
                         </ScrollReveal>
                     )}
@@ -102,10 +106,14 @@ export function Hero({ profile }: HeroProps) {
                                 href={profile.socials.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-blue-400 transition-colors"
+                                className="transition-transform hover:scale-110"
                                 title="LinkedIn"
                             >
-                                <Linkedin size={24} />
+                                <img 
+                                    src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" 
+                                    alt="LinkedIn" 
+                                    className="w-7 h-7 object-contain"
+                                />
                             </a>
                         </ScrollReveal>
                     )}
@@ -115,10 +123,14 @@ export function Hero({ profile }: HeroProps) {
                                 href={profile.socials.whatsapp.startsWith('http') ? profile.socials.whatsapp : `https://wa.me/${profile.socials.whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-green-400 transition-colors"
+                                className="transition-transform hover:scale-110"
                                 title="WhatsApp"
                             >
-                                <MessageCircle size={24} />
+                                <img 
+                                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                                    alt="WhatsApp" 
+                                    className="w-6 h-6"
+                                />
                             </a>
                         </ScrollReveal>
                     )}

@@ -56,8 +56,12 @@ export function Contact({ profile }: ContactProps) {
                                 
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4 group">
-                                        <div className="p-3 bg-blue-600/10 rounded-xl group-hover:bg-blue-600/20 transition-colors">
-                                            <Mail className="text-blue-400" size={24} />
+                                        <div className="p-3 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors">
+                                            <img 
+                                                src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" 
+                                                alt="Gmail" 
+                                                className="w-6 h-6"
+                                            />
                                         </div>
                                         <div>
                                             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Email Me</p>
@@ -84,13 +88,21 @@ export function Contact({ profile }: ContactProps) {
                                     <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Connect on Socials</p>
                                     <div className="flex gap-4">
                                         {profile.socials?.linkedin && (
-                                            <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-blue-400 hover:border-blue-500/30 transition-all">
-                                                <Linkedin size={20} />
+                                            <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-blue-500/30 transition-all group">
+                                                <img 
+                                                    src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" 
+                                                    alt="LinkedIn" 
+                                                    className="w-6 h-6 group-hover:scale-110 transition-transform object-contain"
+                                                />
                                             </a>
                                         )}
                                         {profile.socials?.github && (
-                                            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white hover:border-white/20 transition-all">
-                                                <Github size={20} />
+                                            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all group">
+                                                <img 
+                                                    src="https://www.vectorlogo.zone/logos/github/github-tile.svg" 
+                                                    alt="GitHub" 
+                                                    className="w-6 h-6 invert group-hover:scale-110 transition-transform object-contain"
+                                                />
                                             </a>
                                         )}
                                     </div>
