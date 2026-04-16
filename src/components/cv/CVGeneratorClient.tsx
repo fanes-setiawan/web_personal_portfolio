@@ -36,6 +36,17 @@ export default function CVGeneratorClient({ profile, skills, projects, companies
 
         setIsExporting(true);
 
+        // Track the download event
+        try {
+            fetch('/api/tracking/event', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ eventType: 'CV_DOWNLOAD', details: 'Generated PDF' }),
+            });
+        } catch (e) {
+            // Silently fail tracking
+        }
+
         // Temporarily remove shadow and transform for clean capture
         const element = cvRef.current;
         const previousBoxShadow = element.style.boxShadow;

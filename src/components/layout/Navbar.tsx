@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { LogoutButton } from '@/components/auth/LogoutButton';
-import { Menu, X, Rocket } from 'lucide-react';
+import { Menu, X, Rocket, BadgeCheck } from 'lucide-react';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,6 @@ export function Navbar() {
         getData();
     }, []);
 
-    const initials = profile?.name ? profile.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2) : 'A';
     const brandName = profile?.name ? profile.name.toUpperCase() : 'PORTOFOLIO';
 
     const publicNav = [
@@ -56,10 +55,10 @@ export function Navbar() {
         <nav className="w-full relative z-[100]">
             <div className="py-6 px-4 md:px-12 flex items-center justify-between bg-[#0B1121]/80 backdrop-blur-lg border-b border-white/5 md:border-none">
                 <div className="flex items-center gap-2">
-                    <div className="bg-blue-600 p-1.5 rounded-md w-10 h-10 flex items-center justify-center shadow-lg shadow-blue-900/40">
-                        <span className="text-white font-bold text-lg">{initials}</span>
-                    </div>
-                    <Link href="/" className="text-xl font-bold tracking-tight text-white">{brandName}</Link>
+                    <Link href="/" className="group flex items-center gap-1.5">
+                        <span className="text-xl font-bold tracking-tight text-white">{brandName}</span>
+                        <BadgeCheck size={18} className="text-blue-500 fill-blue-500/10 group-hover:scale-110 transition-transform" />
+                    </Link>
                 </div>
 
                 {/* DESKTOP NAV */}

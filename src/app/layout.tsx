@@ -12,10 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Fanes - Portfolio",
-  description: "Personal portfolio of Fanes Setiawan",
-};
+import { getProfile } from "@/data/api";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await getProfile();
+  
+  return {
+    title: `${profile?.name || 'Fanes'} - Portfolio`,
+    description: profile?.bio || "Personal portfolio of Fanes Setiawan",
+    icons: {
+      icon: profile?.avatarUrl || "/favicon.ico",
+    },
+  };
+}
 
 export default function RootLayout({
   children,

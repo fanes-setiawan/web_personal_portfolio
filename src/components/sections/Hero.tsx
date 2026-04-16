@@ -67,17 +67,15 @@ export function Hero({ profile }: HeroProps) {
                     </ScrollReveal>
 
                     {profile.cvUrl && (
-                        <ScrollReveal delay={0.7} width="fit-content">
+                        <ScrollReveal delay={0.7} width="100%" className="sm:w-auto">
                             <a
-                                href={profile.cvUrl}
+                                href="/api/tracking/cv"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-2 text-slate-400 hover:text-white transition-all font-semibold"
+                                className="group w-full sm:w-auto px-8 py-4 bg-slate-800/40 hover:bg-slate-800/60 text-slate-300 hover:text-white border border-slate-700/50 hover:border-blue-500/50 rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1 active:scale-95 backdrop-blur-sm"
                             >
-                                <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-colors">
-                                    <FileDown size={20} />
-                                </div>
-                                <span className="border-b border-transparent group-hover:border-blue-500/50 pb-0.5">Download CV</span>
+                                <FileDown size={20} className="group-hover:text-blue-400 transition-colors" />
+                                <span>Download CV</span>
                             </a>
                         </ScrollReveal>
                     )}

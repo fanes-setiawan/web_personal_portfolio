@@ -51,7 +51,10 @@ export async function updateSession(request: NextRequest) {
     // Protect /admin routes
     if (request.nextUrl.pathname.startsWith('/admin')) {
         if (!user) {
-            return NextResponse.redirect(new URL('/login', request.url))
+            return {
+                supabaseResponse: NextResponse.redirect(new URL('/login', request.url)),
+                user: null
+            }
         }
 
         // Check if user has SUPER_ADMIN role
@@ -63,9 +66,12 @@ export async function updateSession(request: NextRequest) {
 
         // If no role found or not SUPER_ADMIN, block access
         if (!userRole || userRole.role !== 'SUPER_ADMIN') {
-            return NextResponse.redirect(new URL('/', request.url))
+            return {
+                supabaseResponse: NextResponse.redirect(new URL('/', request.url)),
+                user: user
+            }
         }
     }
 
-    return supabaseResponse
+    return { supabaseResponse, user }
 }
