@@ -4,7 +4,7 @@ import { ProblemSolution } from '@/components/case-study/ProblemSolution';
 import { TechArchitecture } from '@/components/case-study/TechArchitecture';
 import { Challenges } from '@/components/case-study/Challenges';
 import { Gallery } from '@/components/case-study/Gallery';
-import { ImpactResults } from '@/components/case-study/ImpactResults';
+import { KeyAchievements } from '@/components/case-study/KeyAchievements';
 import { getProjectById, getProjects } from '@/data/api';
 import { createStaticClient, createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
@@ -30,6 +30,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <MainLayout>
             <article className="max-w-5xl mx-auto px-4">
                 <CaseStudyHeader project={project} isLoggedIn={isLoggedIn} />
+
+                <KeyAchievements project={project} />
 
                 {project.caseStudy ? (
                     <>

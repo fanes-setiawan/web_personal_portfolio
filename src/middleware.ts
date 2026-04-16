@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
     // 1. Update Supabase Session (Existing logic)
     const { supabaseResponse, user } = await updateSession(request)
 
-    // 2. Track Visitor (Asynchronously)
+    // 2. Track Visitor (Asynchronously using event.waitUntil for Edge compatibility)
     const pathname = request.nextUrl.pathname
     
     // Only track main pages, not API routes or static files
@@ -14,14 +14,15 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
         !pathname.startsWith('/api') && 
         !pathname.includes('.')
     ) {
-        // Use await instead of waitUntil to ensure log is sent before request finishes (for debugging)
-        try {
-            const info = await getVisitorInfo(request, 'PAGE_VIEW')
-            info.email = user?.email
-            await sendDiscordNotification(info)
-        } catch (err) {
-            console.error('Middleware logging failed:', err)
-        }
+        event.waitUntil((async () => {
+            try {
+                const info = await getVisitorInfo(request, 'PAGE_VIEW')
+                info.email = user?.email
+                await sendDiscordNotification(info)
+            } catch (err) {
+                console.error('Middleware logging failed:', err)
+            }
+        })())
     }
 
     return supabaseResponse

@@ -108,6 +108,55 @@ export const projectsData: Project[] = [
         tags: ['HealthKit', 'MVVM'],
         category: 'android',
     },
+    {
+        id: '4',
+        title: 'Parisada Mobile',
+        shortDescription: 'Religious Community Platform',
+        description: 'A comprehensive mobile platform for community engagement, featuring real-time communication and AI-driven accessibility.',
+        imageUrl: '/project4.jpg',
+        tags: ['Flutter', 'LiveKit', 'AssemblyAI', 'WebSockets'],
+        category: 'android',
+        role: "Lead Flutter Developer",
+        company: "Parisada Community",
+        period: "2024 — PRESENT",
+        achievements: [
+            "Architected a low-latency real-time Speech-to-Text (STT) engine using AssemblyAI Streaming WebSockets for live session transcription.",
+            "Optimized audio capture pipeline using PCM 16-bit 48kHz mono streaming, achieving high transcription accuracy even in noisy environments.",
+            "Implemented advanced audio session management to resolve hardware microphone conflicts between STT services and LiveKit video conferencing.",
+            "Developed robust reconnection and state management logic to handle network instability and maintain session continuity."
+        ],
+        stats: [
+            { label: 'Latency', value: '< 500ms' },
+            { label: 'Accuracy', value: '98%' },
+            { label: 'Uptime', value: '99.9%' },
+        ],
+        caseStudy: {
+            problem: "The platform needed to provide real-time accessibility for users during live sessions, but integrating speech-to-text alongside high-performance video conferencing (LiveKit) caused severe hardware resource conflicts and latency issues.",
+            solution: "Developed a custom STT service that leverages low-level audio streaming and WebSocket connections. By implementing a sophisticated audio focus and session management layer, we allowed the app to broadcast audio and transcribe it simultaneously without interference.",
+            features: ["Real-time STT", "LiveKit Integration", "Dynamic Reconnection", "PCM Audio Streaming"],
+            technicalArchitecture: {
+                description: "Built using a clean architecture pattern in Flutter, separating the audio capture, streaming, and transcription logic for maximum testability.",
+                layers: [
+                    { name: "Audio Service", description: "Hardware-level audio capture and session management" },
+                    { name: "Streaming Layer", description: "WebSocket-based binary data transmission" },
+                    { name: "UI/State Layer", description: "Real-time transcription display using StreamBuilder" }
+                ]
+            },
+            challenges: [
+                {
+                    title: "LiveKit Resource Conflicts",
+                    description: "Running multiple audio-dependent services simultaneously triggered OS-level microphone blocks. Resolved this by implementing a priority-based audio session configuration.",
+                    tags: ["Audio", "Hardware"]
+                }
+            ],
+            results: [
+                { metric: "98%", description: "Successful transcription rate across diverse dialects." },
+                { metric: "< 500ms", description: "End-to-end latency from speech to UI display." }
+            ],
+            screenshots: ["/screen1.jpg"],
+            downloadUrl: "#"
+        }
+    },
 ];
 
 export const companiesData: Company[] = [
