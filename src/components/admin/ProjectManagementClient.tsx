@@ -20,6 +20,7 @@ export function ProjectManagementClient({
             {/* Form Section */}
             <div className="glass p-1 rounded-2xl border border-white/5 overflow-hidden">
                 <ProjectForm
+                    key={editingProject?.id || 'new'}
                     project={editingProject}
                     companies={companies}
                     onCancel={() => setEditingProject(null)}
