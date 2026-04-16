@@ -36,12 +36,15 @@ export async function createClient(): Promise<SupabaseClient> {
  * Creates a Supabase client that doesn't rely on cookies.
  * Safe to use in generateStaticParams or other static contexts.
  */
-export function createStaticClient(): SupabaseClient {
+export function createStaticClient(): SupabaseClient | null {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!url || !key) {
-        throw new Error('Supabase environment variables (URL/KEY) are missing. Static generation failed.');
+        // We log a warning but don't throw to avoid crashing the build in environments
+        // where variables might be missing during initial setup.
+        console.warn('Supabase environment variables (URL/KEY) are missing. Static generation might be incomplete.');
+        return null;
     }
 
     return createSupabaseClient(url, key);

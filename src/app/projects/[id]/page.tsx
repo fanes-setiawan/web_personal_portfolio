@@ -58,6 +58,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 // Generate static params for all projects to enable static export if needed
 export async function generateStaticParams() {
     const staticClient = createStaticClient();
+    if (!staticClient) return [];
     
     const projects = await getProjects(staticClient);
     return projects.map((project) => ({
