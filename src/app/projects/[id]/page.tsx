@@ -5,6 +5,7 @@ import { TechArchitecture } from '@/components/case-study/TechArchitecture';
 import { Challenges } from '@/components/case-study/Challenges';
 import { Gallery } from '@/components/case-study/Gallery';
 import { KeyAchievements } from '@/components/case-study/KeyAchievements';
+import { ImpactResults } from '@/components/case-study/ImpactResults';
 import { getProjectById, getProjects } from '@/data/api';
 import { createStaticClient, createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
