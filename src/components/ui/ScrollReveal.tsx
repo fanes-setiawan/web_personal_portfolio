@@ -48,7 +48,7 @@ export const ScrollReveal = ({
                 }}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-10px" }}
                 transition={{
                     duration,
                     delay,

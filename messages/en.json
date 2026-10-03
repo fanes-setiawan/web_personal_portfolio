@@ -1,0 +1,14 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "work": "Work",
+    "experience": "Experience",
+    "about": "About",
+    "cv": "CV",
+    "letsTalk": "Let's Talk",
+    "manageProjects": "Manage Projects",
+    "cvGenerator": "CV Generator",
+    "admin": "Admin",
+    "switchLang": "ID"
+  }
+}

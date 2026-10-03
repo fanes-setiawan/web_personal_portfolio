@@ -1,0 +1,14 @@
+{
+  "Navbar": {
+    "home": "Beranda",
+    "work": "Karya",
+    "experience": "Pengalaman",
+    "about": "Tentang",
+    "cv": "CV",
+    "letsTalk": "Mari Diskusi",
+    "manageProjects": "Kelola Proyek",
+    "cvGenerator": "Pembuat CV",
+    "admin": "Admin",
+    "switchLang": "EN"
+  }
+}

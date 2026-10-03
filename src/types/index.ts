@@ -53,6 +53,7 @@ export interface Project {
     playStoreUrl?: string;
     achievements?: string[]; // For CV bullet points
     isPrivate?: boolean; // For CV categorization
+    mockup_style?: 'layout1' | 'layout2' | 'layout3' | string;
     created_at?: string;
 }
 

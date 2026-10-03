@@ -82,6 +82,7 @@ export async function getProjects(supabaseClient?: any): Promise<Project[]> {
         stats: item.stats,
         caseStudy: item.case_study,
         isPrivate: item.is_private,
+        mockup_style: item.mockup_style,
         created_at: item.created_at,
     }));
 }
@@ -113,6 +114,7 @@ export async function getProjectById(id: string, supabaseClient?: any): Promise<
         stats: data.stats,
         caseStudy: data.case_study,
         isPrivate: data.is_private,
+        mockup_style: data.mockup_style,
         created_at: data.created_at,
     };
 }

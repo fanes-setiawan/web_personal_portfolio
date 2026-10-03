@@ -1,5 +1,5 @@
 import { Profile } from '@/types';
-import { Mail, ArrowRight, CheckCircle2, Github, Linkedin, Twitter, FileDown, MessageCircle } from 'lucide-react';
+import { Mail, ArrowRight, CheckCircle2, Github, Linkedin, Twitter, FileDown, MessageCircle, Calendar, Smartphone, Code2, Rocket } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface HeroProps {
@@ -8,177 +8,136 @@ interface HeroProps {
 
 export function Hero({ profile }: HeroProps) {
     return (
-        <section className="py-12 md:py-20 flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-20 overflow-hidden">
-            <div className="flex-1 space-y-6 md:space-y-8 max-w-2xl text-center md:text-left">
-                <ScrollReveal delay={0.1} width="fit-content" className="mx-auto md:mx-0">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        <span className="text-[10px] md:text-xs font-medium text-blue-400 tracking-wide uppercase">Available for new projects</span>
+        <section className="pt-8 pb-10 md:pt-16 md:pb-16 flex flex-col gap-12 md:gap-16 max-w-7xl mx-auto px-4 md:px-12">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 overflow-hidden">
+                <div className="flex-1 space-y-6 md:space-y-8 max-w-2xl text-center lg:text-left z-10 w-full">
+                    <ScrollReveal delay={0.1} width="fit-content" className="mx-auto lg:mx-0">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
+                            <span className="text-blue-600 font-semibold text-sm flex items-center gap-2">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                </span>
+                                Mobile Engineer
+                            </span>
+                        </div>
+                    </ScrollReveal>
+
+                    <div className="space-y-4">
+                        <ScrollReveal delay={0.3}>
+                            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-slate-900 leading-[1.1] tracking-tight">
+                                I Build Mobile Apps <br className="hidden md:block" />
+                                <span className="text-blue-600">That Actually Ship.</span>
+                            </h1>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={0.5}>
+                            <p className="text-base md:text-lg text-slate-500 max-w-lg leading-relaxed mx-auto lg:mx-0 font-medium">
+                                {profile.bio || "I'm a Mobile Engineer with 3+ years of experience building production-ready applications for iOS and Android using Flutter, native technologies, and modern backend services."}
+                            </p>
+                        </ScrollReveal>
                     </div>
-                </ScrollReveal>
 
-                <div className="space-y-4">
-                    <ScrollReveal delay={0.2} width="fit-content" className="mx-auto md:mx-0">
-                        <p className="text-blue-400 font-bold tracking-widest uppercase text-sm">HI, I&apos;M {profile.name.split(' ')[0]}</p>
-                    </ScrollReveal>
+                    <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 justify-center lg:justify-start">
+                        <ScrollReveal delay={0.6} width="100%" className="sm:w-auto">
+                            <a href="#portfolio" className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+                                View My Work <ArrowRight size={18} />
+                            </a>
+                        </ScrollReveal>
 
-                    <ScrollReveal delay={0.3}>
-                        <h1 className="text-4xl md:text-7xl font-bold text-white leading-tight">
-                            Nothing <br />
-                            <span className="text-slate-400">Impossible.</span>
-                        </h1>
-                    </ScrollReveal>
-
-                    <ScrollReveal delay={0.4}>
-                        <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent italic">
-                            {profile.roleSubtitle}
-                        </h2>
-                    </ScrollReveal>
-                </div>
-
-                <ScrollReveal delay={0.5}>
-                    <div className="space-y-6">
-                        <p className="text-base md:text-lg text-slate-400 max-w-lg leading-relaxed mx-auto md:mx-0">
-                            {profile.bio}
-                        </p>
-
-                        {/* Core Tech Stack Badges */}
-                        {profile.coreTechStack && profile.coreTechStack.length > 0 && (
-                            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-2">
-                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mr-2 block w-full md:w-auto mb-2 md:mb-0">Core Tech:</span>
-                                {profile.coreTechStack.map((tech) => (
-                                    <span key={tech} className="px-2.5 py-1 bg-slate-800/50 border border-slate-700/50 rounded text-[10px] font-bold text-slate-300 uppercase tracking-wider">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
+                        {profile.cvUrl && (
+                            <ScrollReveal delay={0.7} width="100%" className="sm:w-auto">
+                                <a
+                                    href="/api/tracking/cv"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow hover:-translate-y-0.5 whitespace-nowrap"
+                                >
+                                    Download CV <FileDown size={18} />
+                                </a>
+                            </ScrollReveal>
                         )}
+                        
+                        <ScrollReveal delay={0.75} width="100%" className="sm:w-auto">
+                            <a
+                                href="https://play.google.com/store/apps/dev?id=6540217402260692469"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-emerald-200 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow hover:-translate-y-0.5 whitespace-nowrap group"
+                            >
+                                <img src="https://www.vectorlogo.zone/logos/google_play/google_play-icon.svg" className="w-5 h-5 group-hover:scale-110 transition-transform" alt="Play Store" />
+                                Play Store
+                            </a>
+                        </ScrollReveal>
+                    </div>
+                    
+                    {/* Tech Stack badges like the image */}
+                    <ScrollReveal delay={0.8}>
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-8">
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-4 h-4"/> Flutter</span>
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/apple/apple-ar21.svg" className="w-4 h-4 object-contain mb-0.5"/> iOS</span>
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/android/android-icon.svg" className="w-4 h-4"/> Android</span>
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" className="w-4 h-4"/> Firebase</span>
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center"><span className="text-[10px] text-blue-600 font-bold">API</span></div> REST API</span>
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><div className="w-4 h-4 bg-purple-100 rounded-full flex items-center justify-center"><span className="text-[10px] text-purple-600 font-bold">CI</span></div> CI/CD</span>
+                        </div>
+                    </ScrollReveal>
+                </div>
+
+                <ScrollReveal width="auto" direction="right" delay={0.4} duration={0.8} distance={40} className="relative w-full lg:w-5/12 flex justify-center lg:justify-end shrink-0">
+                    <div className="relative w-64 h-80 sm:w-[280px] sm:h-[350px] md:w-[350px] md:h-[450px] mt-10 lg:mt-0">
+                        <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden border border-slate-100 shadow-2xl shadow-blue-900/5 bg-white">
+                            <img
+                                src="/images/foto-profil.jpeg?v=1"
+                                alt={profile.name}
+                                className="w-full h-full object-cover object-top"
+                            />
+                        </div>
                     </div>
                 </ScrollReveal>
-
-                <div className="flex flex-col sm:flex-row items-center gap-6 pt-4 justify-center md:justify-start">
-                    <ScrollReveal delay={0.6} width="100%" className="sm:w-auto">
-                        <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all shadow-xl shadow-blue-900/30 hover:-translate-y-1 active:scale-95">
-                            View Portfolio <ArrowRight size={20} />
-                        </a>
-                    </ScrollReveal>
-
-                    {profile.cvUrl && (
-                        <ScrollReveal delay={0.7} width="100%" className="sm:w-auto">
-                            <a
-                                href="/api/tracking/cv"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group w-full sm:w-auto px-8 py-4 bg-slate-800/40 hover:bg-slate-800/60 text-slate-300 hover:text-white border border-slate-700/50 hover:border-blue-500/50 rounded-lg font-bold flex items-center justify-center gap-2 transition-all hover:-translate-y-1 active:scale-95 backdrop-blur-sm"
-                            >
-                                <FileDown size={20} className="group-hover:text-blue-400 transition-colors" />
-                                <span>Download CV</span>
-                            </a>
-                        </ScrollReveal>
-                    )}
-                </div>
-
-                {/* Social Media Links */}
-                <div className="flex items-center justify-center md:justify-start gap-6 pt-2">
-                    {profile.socials?.github && (
-                        <ScrollReveal delay={0.8} width="fit-content">
-                            <a
-                                href={profile.socials.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="transition-transform hover:scale-110"
-                                title="GitHub"
-                            >
-                                <img 
-                                    src="https://www.vectorlogo.zone/logos/github/github-tile.svg" 
-                                    alt="GitHub" 
-                                    className="w-7 h-7 object-contain invert"
-                                />
-                            </a>
-                        </ScrollReveal>
-                    )}
-                    {profile.socials?.linkedin && (
-                        <ScrollReveal delay={0.9} width="fit-content">
-                            <a
-                                href={profile.socials.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="transition-transform hover:scale-110"
-                                title="LinkedIn"
-                            >
-                                <img 
-                                    src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" 
-                                    alt="LinkedIn" 
-                                    className="w-7 h-7 object-contain"
-                                />
-                            </a>
-                        </ScrollReveal>
-                    )}
-                    {profile.socials?.whatsapp && (
-                        <ScrollReveal delay={1.0} width="fit-content">
-                            <a
-                                href={profile.socials.whatsapp.startsWith('http') ? profile.socials.whatsapp : `https://wa.me/${profile.socials.whatsapp}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="transition-transform hover:scale-110"
-                                title="WhatsApp"
-                            >
-                                <img 
-                                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-                                    alt="WhatsApp" 
-                                    className="w-6 h-6"
-                                />
-                            </a>
-                        </ScrollReveal>
-                    )}
-                    {profile.socials?.twitter && (
-                        <ScrollReveal delay={1.1} width="fit-content">
-                            <a
-                                href={profile.socials.twitter}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-sky-400 transition-colors"
-                                title="Twitter"
-                            >
-                                <Twitter size={24} />
-                            </a>
-                        </ScrollReveal>
-                    )}
-                </div>
             </div>
 
-            <ScrollReveal direction="right" delay={0.4} duration={0.8} distance={40} width="fit-content">
-                <div className="relative">
-                    <div className="absolute -inset-4 bg-blue-500/20 rounded-3xl blur-3xl opacity-30"></div>
-                    <div className="relative w-64 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[500px] bg-slate-800 rounded-3xl overflow-hidden border border-slate-700/50">
-                        {profile.avatarUrl ? (
-                            <img
-                                src={profile.avatarUrl}
-                                alt={profile.name}
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            <div className="w-full h-full bg-gradient-to-b from-slate-700 to-slate-900 flex items-end justify-center">
-                                <span className="text-9xl opacity-10 pb-10">👨‍💻</span>
-                            </div>
-                        )}
-
-                        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 bg-slate-900/90 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 flex items-center gap-3 sm:gap-4">
-                            <div className="p-1.5 sm:p-2 bg-green-500/20 rounded-lg">
-                                <CheckCircle2 className="text-green-500" size={20} />
-                            </div>
-                            <div>
-                                <p className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Experience</p>
-                                <p className="text-sm sm:text-base text-white font-bold">{profile.experienceYears}+ Years</p>
-                            </div>
+            {/* Stats Bar */}
+            <ScrollReveal delay={0.9}>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 bg-white border border-slate-100 p-6 md:p-8 rounded-3xl shadow-sm mt-0">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-50 text-blue-600 rounded-xl shrink-0">
+                            <Calendar size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-slate-900">{profile.experienceYears}+</h3>
+                            <p className="text-xs text-slate-500 font-medium">Years Experience</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-50 text-blue-600 rounded-xl shrink-0">
+                            <Smartphone size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-slate-900">20+</h3>
+                            <p className="text-xs text-slate-500 font-medium">Apps & Projects</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-50 text-blue-600 rounded-xl shrink-0">
+                            <Code2 size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-slate-900 text-sm">Cross Platform</h3>
+                            <p className="text-xs text-slate-500 font-medium">Flutter & Native</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-50 text-blue-600 rounded-xl shrink-0">
+                            <Rocket size={24} />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-slate-900 text-sm">Production Ready</h3>
+                            <p className="text-xs text-slate-500 font-medium">Deploy to Play Store & App Store</p>
                         </div>
                     </div>
                 </div>
             </ScrollReveal>
-
         </section>
     );
 }

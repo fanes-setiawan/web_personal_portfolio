@@ -85,6 +85,53 @@ export default function EditProjectPage() {
                         </div>
                     </section>
 
+                    {/* Presentation Style */}
+                    <section className="bg-[#0F1629] border border-slate-800 rounded-xl p-6">
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="p-1.5 bg-blue-900/30 rounded text-blue-400">
+                                <Smartphone size={18} />
+                            </div>
+                            <h2 className="text-lg font-bold text-white">Presentation Style</h2>
+                        </div>
+                        <p className="text-sm text-slate-400 mb-4">
+                            Choose how this project's screenshot will be displayed in the portfolio. Upload a raw, unedited screenshot in the Media tab, and the system will automatically wrap it in these 3D device frames.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            {/* Layout 1 */}
+                            <label className="relative flex flex-col items-center justify-center p-4 border-2 border-blue-500 bg-blue-900/10 rounded-xl cursor-pointer">
+                                <input type="radio" name="mockupStyle" defaultChecked className="absolute top-3 right-3 text-blue-500 bg-slate-800 border-slate-700 focus:ring-blue-500 focus:ring-offset-slate-900" />
+                                <div className="h-16 w-full flex items-center justify-center gap-1 mb-2 opacity-80">
+                                    <div className="w-6 h-12 border-2 border-slate-400 rounded-md -rotate-12 translate-y-1"></div>
+                                    <div className="w-8 h-14 border-2 border-slate-300 rounded-md rotate-6"></div>
+                                </div>
+                                <span className="text-sm font-bold text-white text-center">Two Tilted Phones</span>
+                                <span className="text-[10px] text-slate-400 text-center mt-1">Best for showing multiple screens</span>
+                            </label>
+
+                            {/* Layout 2 */}
+                            <label className="relative flex flex-col items-center justify-center p-4 border-2 border-slate-700 bg-[#0B1121] rounded-xl cursor-pointer hover:border-slate-600 transition-colors">
+                                <input type="radio" name="mockupStyle" className="absolute top-3 right-3 text-blue-500 bg-slate-800 border-slate-700 focus:ring-blue-500 focus:ring-offset-slate-900" />
+                                <div className="h-16 w-full flex items-center justify-center gap-2 mb-2 opacity-80">
+                                    <div className="w-16 h-12 border-2 border-slate-300 rounded-md"></div>
+                                    <div className="w-6 h-12 border-2 border-slate-400 rounded-md translate-y-2 -ml-6 bg-[#0B1121]"></div>
+                                </div>
+                                <span className="text-sm font-bold text-white text-center">Tablet + Phone</span>
+                                <span className="text-[10px] text-slate-400 text-center mt-1">Best for cross-platform apps</span>
+                            </label>
+
+                            {/* Layout 3 */}
+                            <label className="relative flex flex-col items-center justify-center p-4 border-2 border-slate-700 bg-[#0B1121] rounded-xl cursor-pointer hover:border-slate-600 transition-colors">
+                                <input type="radio" name="mockupStyle" className="absolute top-3 right-3 text-blue-500 bg-slate-800 border-slate-700 focus:ring-blue-500 focus:ring-offset-slate-900" />
+                                <div className="h-16 w-full flex items-center justify-center mb-2 opacity-80">
+                                    <div className="w-8 h-14 border-2 border-slate-300 rounded-md"></div>
+                                </div>
+                                <span className="text-sm font-bold text-white text-center">Single Phone</span>
+                                <span className="text-[10px] text-slate-400 text-center mt-1">Clean, simple showcase</span>
+                            </label>
+                        </div>
+                    </section>
+
                     {/* Description */}
                     <section className="bg-[#0F1629] border border-slate-800 rounded-xl p-6">
                         <div className="flex items-center gap-2 mb-6">

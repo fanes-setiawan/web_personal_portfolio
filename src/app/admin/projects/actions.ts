@@ -36,6 +36,7 @@ export async function createProject(formData: FormData) {
         play_store_url: formData.get('playStoreUrl') as string,
         is_private: formData.get('isPrivate') === 'true',
         achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
+        mockup_style: formData.get('mockupStyle') as string || 'layout1',
         created_at: new Date().toISOString(),
     };
 
@@ -99,6 +100,7 @@ export async function updateProject(id: string, formData: FormData) {
         play_store_url: formData.get('playStoreUrl') as string,
         is_private: formData.get('isPrivate') === 'true',
         achievements: (formData.get('achievements') as string || '').split('\n').map(a => a.trim()).filter(Boolean),
+        mockup_style: formData.get('mockupStyle') as string || 'layout1',
     };
 
     const { error } = await supabase!

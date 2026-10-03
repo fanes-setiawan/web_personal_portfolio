@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { LogoutButton } from '@/components/auth/LogoutButton';
-import { Menu, X, Rocket, BadgeCheck } from 'lucide-react';
+import { Menu, X, Rocket, BadgeCheck, Languages } from 'lucide-react';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,20 +29,20 @@ export function Navbar() {
 
             const { data: profile } = await supabase
                 .from('profile')
-                .select('name')
+                .select('name, email')
                 .single();
             setProfile(profile);
         }
         getData();
     }, []);
 
-    const brandName = profile?.name ? profile.name.toUpperCase() : 'PORTOFOLIO';
+    const brandName = profile?.name ? profile.name.toUpperCase() : 'FANES SETIAWAN';
 
     const publicNav = [
         { name: 'Home', href: '/' },
-        { name: 'About', href: '/#about' },
+        { name: 'Work', href: '/#portfolio' },
         { name: 'Experience', href: '/#experience' },
-        { name: 'Portfolio', href: '/#portfolio' },
+        { name: 'About', href: '/#about' },
         { name: 'CV', href: '/docs' },
     ];
 
@@ -52,43 +52,42 @@ export function Navbar() {
     ];
 
     return (
-        <nav className="w-full relative z-[100]">
-            <div className="py-6 px-4 md:px-12 flex items-center justify-between bg-[#0B1121]/80 backdrop-blur-lg border-b border-white/5 md:border-none">
+        <nav className="w-full z-[100] bg-white/95 backdrop-blur-sm sticky top-0 border-b border-slate-100 shadow-sm">
+            <div className="py-4 px-4 md:px-12 flex items-center justify-between max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
-                    <Link href="/" className="group flex items-center gap-1.5">
-                        <span className="text-xl font-bold tracking-tight text-white">{brandName}</span>
-                        <BadgeCheck size={18} className="text-blue-500 fill-blue-500/10 group-hover:scale-110 transition-transform" />
+                    <Link href="/" className="group flex items-center gap-2">
+                        <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-6 h-6 object-contain" alt="Logo" />
+                        <span className="text-sm font-bold tracking-tight text-slate-800">{brandName}</span>
                     </Link>
                 </div>
 
                 {/* DESKTOP NAV */}
-                <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-500">
                     {!user && (
-                        <>
+                        <div className="flex items-center gap-8 bg-white border border-slate-100 shadow-sm px-6 py-2 rounded-full">
                             {publicNav.map(link => (
-                                <Link key={link.name} href={link.href} className="hover:text-white transition-colors">
+                                <Link key={link.name} href={link.href} className="hover:text-blue-600 transition-colors">
                                     {link.name}
                                 </Link>
                             ))}
-                        </>
+                        </div>
                     )}
 
                     {user && role === 'SUPER_ADMIN' && (
-                        <>
+                        <div className="flex items-center gap-6 bg-white border border-slate-100 shadow-sm px-6 py-2 rounded-full">
+                            <span className="text-xs font-bold text-red-500 uppercase tracking-widest border-r pr-4 border-slate-200">Admin</span>
                             {adminNav.map(link => (
-                                <Link key={link.name} href={link.href} className="hover:text-white transition-colors">
+                                <Link key={link.name} href={link.href} className="hover:text-blue-600 transition-colors">
                                     {link.name}
                                 </Link>
                             ))}
-                            <span className="text-slate-700">|</span>
                             <LogoutButton />
-                        </>
+                        </div>
                     )}
 
                     {!user && (
-                        <a href={`mailto:${profile?.email || ''}`} className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-colors text-xs font-semibold tracking-wider">
-                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            HIRE ME
+                        <a href={`mailto:${profile?.email || ''}`} className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all text-sm font-bold shadow-sm hover:shadow-md">
+                            Let's Talk
                         </a>
                     )}
                 </div>
@@ -96,7 +95,7 @@ export function Navbar() {
                 {/* MOBILE TOGGLE */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
+                    className="md:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
@@ -104,7 +103,7 @@ export function Navbar() {
 
             {/* MOBILE MENU DRAWER */}
             {isOpen && (
-                <div className="absolute top-full left-0 w-full bg-[#111827] border-b border-white/10 md:hidden animate-in slide-in-from-top-4 duration-300">
+                <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 md:hidden animate-in slide-in-from-top-4 duration-300 shadow-xl">
                     <div className="flex flex-col p-6 gap-6">
                         {!user && (
                             <>
@@ -113,15 +112,14 @@ export function Navbar() {
                                         key={link.name}
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-lg font-bold text-white hover:text-blue-400 transition-colors"
+                                        className="text-lg font-bold text-slate-800 hover:text-blue-600 transition-colors"
                                     >
                                         {link.name}
                                     </Link>
                                 ))}
-                                <div className="h-px bg-white/5 my-2" />
-                                <a href={`mailto:${profile?.email || ''}`} className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20">
-                                    <Rocket size={20} />
-                                    HIRE ME
+                                <div className="h-px bg-slate-100 my-2" />
+                                <a href={`mailto:${profile?.email || ''}`} className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold flex items-center justify-center gap-2 shadow-sm">
+                                    Let's Talk
                                 </a>
                             </>
                         )}
@@ -133,12 +131,12 @@ export function Navbar() {
                                         key={link.name}
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-lg font-bold text-white hover:text-blue-400 transition-colors"
+                                        className="text-lg font-bold text-slate-800 hover:text-blue-600 transition-colors"
                                     >
                                         {link.name}
                                     </Link>
                                 ))}
-                                <div className="h-px bg-white/5 my-2" />
+                                <div className="h-px bg-slate-100 my-2" />
                                 <LogoutButton />
                             </>
                         )}
