@@ -76,6 +76,7 @@ export interface Company {
     website?: string;
     description?: string;
     location?: string;
+    position?: string;
     start_date?: string;
     end_date?: string;
     technologies?: Technology[];
