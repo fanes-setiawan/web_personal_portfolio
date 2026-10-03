@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 
 interface ScrollRevealProps {
     children: ReactNode;
-    width?: "fit-content" | "100%";
+    width?: "fit-content" | "100%" | "auto";
     className?: string;
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
