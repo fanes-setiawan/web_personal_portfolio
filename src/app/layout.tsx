@@ -23,6 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: profile?.avatarUrl || "/favicon.ico",
     },
+    verification: {
+      google: "nv7oDzTOjTFSsXrkQ1A3QBGQFRBuraFT9-GrQXmF8Xg",
+    },
   };
 }
 
