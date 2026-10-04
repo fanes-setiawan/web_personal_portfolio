@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { LogoutButton } from '@/components/auth/LogoutButton';
@@ -40,10 +41,10 @@ export function Navbar() {
 
     const publicNav = [
         { name: 'Home', href: '/' },
-        { name: 'Work', href: '/#portfolio' },
+        { name: 'Services', href: '/jasa-upload-play-store' },
+        { name: 'Portfolio', href: '/#portfolio' },
         { name: 'Experience', href: '/#experience' },
-        { name: 'About', href: '/#about' },
-        { name: 'CV', href: '/docs' },
+        { name: 'Contact', href: '/#contact' },
     ];
 
     const adminNav = [
@@ -55,8 +56,14 @@ export function Navbar() {
         <nav className="w-full z-[100] bg-white/95 backdrop-blur-sm sticky top-0 border-b border-slate-100 shadow-sm">
             <div className="py-4 px-4 md:px-12 flex items-center justify-between max-w-7xl mx-auto">
                 <div className="flex items-center gap-2">
-                    <Link href="/" className="group flex items-center gap-2">
-                        <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-6 h-6 object-contain" alt="Logo" />
+                    <Link href="/" className="group flex items-center gap-3">
+                        <Image 
+                            src="/images/Modern Teal Profile Portrait.png" 
+                            alt="Fanes Setiawan" 
+                            width={32} 
+                            height={32} 
+                            className="w-8 h-8 rounded-full object-cover border border-slate-200" 
+                        />
                         <span className="text-sm font-bold tracking-tight text-slate-800">{brandName}</span>
                     </Link>
                 </div>
