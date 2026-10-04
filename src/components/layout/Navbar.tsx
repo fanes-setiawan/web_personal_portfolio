@@ -59,7 +59,7 @@ export function Navbar() {
                     <Link href="/" className="group flex items-center gap-3">
                         <Image 
                             src="/images/Modern Teal Profile Portrait.png" 
-                            alt="Fanes Setiawan" 
+                            alt="" 
                             width={32} 
                             height={32} 
                             className="w-8 h-8 rounded-full object-cover border border-slate-200" 
@@ -103,6 +103,7 @@ export function Navbar() {
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="md:hidden p-2 text-slate-600 hover:text-slate-900 transition-colors"
+                    aria-label={isOpen ? "Tutup menu" : "Buka menu"}
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>

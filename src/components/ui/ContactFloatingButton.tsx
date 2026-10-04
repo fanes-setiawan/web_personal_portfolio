@@ -71,6 +71,7 @@ export function ContactFloatingButton({ whatsappUrl, email }: ContactFloatingBut
 
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Tutup menu kontak" : "Buka menu kontak"}
                 className={`w-14 h-14 rounded-full flex items-center justify-center transition-all shadow-xl active:scale-90 ${isOpen ? 'bg-slate-800 text-white rotate-90' : 'bg-blue-600 text-white hover:bg-blue-500 shadow-blue-600/20'
                     }`}
             >

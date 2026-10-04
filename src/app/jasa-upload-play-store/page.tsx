@@ -209,6 +209,7 @@ export default function JasaUploadPlayStore() {
                                 alt="Jasa Upload dan Release Aplikasi Android ke Play Store" 
                                 width={1200} 
                                 height={630} 
+                                sizes="(max-width: 768px) 100vw, 1200px"
                                 className="w-full h-auto object-cover"
                                 priority
                             />
@@ -415,12 +416,12 @@ export default function JasaUploadPlayStore() {
                     <p className="text-slate-700 mb-6">Berikut adalah beberapa aplikasi mobile yang telah berhasil saya kembangkan dan distribusikan:</p>
                     <ul className="space-y-4 mb-6">
                         <li className="border border-slate-100 p-4 rounded-lg bg-white">
-                            <h4 className="font-bold text-slate-900">Cuan Track</h4>
+                            <h3 className="font-bold text-slate-900 text-base">Cuan Track</h3>
                             <p className="text-sm text-slate-500 mb-2">Platform: Android | Tech: Flutter, Firebase</p>
                             <p className="text-sm text-slate-700">Aplikasi pelacakan pengeluaran personal dengan fitur kategorisasi.</p>
                         </li>
                         <li className="border border-slate-100 p-4 rounded-lg bg-white">
-                            <h4 className="font-bold text-slate-900">Guru Smart School</h4>
+                            <h3 className="font-bold text-slate-900 text-base">Guru Smart School</h3>
                             <p className="text-sm text-slate-500 mb-2">Platform: Android | Tech: Flutter, REST API</p>
                             <p className="text-sm text-slate-700">Sistem informasi manajemen sekolah untuk memantau presensi dan nilai.</p>
                         </li>
