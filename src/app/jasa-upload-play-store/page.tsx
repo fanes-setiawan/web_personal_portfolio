@@ -442,110 +442,105 @@ export default function JasaUploadPlayStore() {
 
                 {/* PRICING */}
                 <section className="mb-20">
-                    <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Paket & Harga Layanan</h2>
-                    <div className="max-w-xl mx-auto">
-                        <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative">
-                            
+                    <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Paket & Harga Layanan</h2>
+                    <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
+                        
+                        {/* CARD 1: AKUN PRIBADI (MILIK FANES) */}
+                        <div className="bg-white rounded-[1.5rem] p-4 md:p-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative">
                             {/* HEADER */}
-                            <div className="flex items-center gap-4 mb-6">
+                            <div className="flex items-center gap-3 mb-4">
                                 {/* Profile Icon with Crown */}
                                 <div className="relative">
-                                    <div className="absolute -top-3 -left-3 text-2xl rotate-[-15deg]">👑</div>
-                                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
-                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                    <div className="absolute -top-2 -left-2 text-sm rotate-[-15deg]">👑</div>
+                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                                     </div>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-3xl font-extrabold text-slate-800 tracking-tight">Akun <span className="text-indigo-600">Pribadi</span></h3>
-                                    <p className="text-slate-500 text-sm mt-1">Aplikasi dirilis di akun <span className="text-blue-500 font-bold">Google Play</span> kami</p>
+                                    <h3 className="text-lg md:text-xl font-extrabold text-slate-800 tracking-tight">Akun <span className="text-indigo-600">Pribadi</span></h3>
+                                    <p className="text-slate-500 text-[10px] md:text-xs mt-0.5">Aplikasi dirilis di akun <span className="text-blue-500 font-bold">Google Play</span> kami</p>
                                 </div>
                             </div>
                             
                             {/* PRICE BLOCK */}
-                            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-[1.5rem] p-6 relative overflow-hidden mb-8 shadow-lg shadow-blue-500/20">
+                            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-[1rem] p-4 relative overflow-hidden mb-5 shadow-lg shadow-blue-500/20">
                                 {/* Abstract Shapes in background */}
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-                                <div className="absolute bottom-0 left-0 w-24 h-24 bg-indigo-900/20 rounded-full blur-xl -ml-10 -mb-10"></div>
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl -mr-8 -mt-8"></div>
+                                <div className="absolute bottom-0 left-0 w-20 h-20 bg-indigo-900/20 rounded-full blur-xl -ml-8 -mb-8"></div>
                                 
                                 <div className="relative z-10 flex justify-between items-center">
                                     <div>
                                         <div className="flex items-baseline text-white">
-                                            <span className="text-xl font-bold mr-1">Rp</span>
-                                            <span className="text-6xl font-black tracking-tighter">500</span>
-                                            <span className="text-xl font-bold">.000</span>
+                                            <span className="text-sm md:text-base font-bold mr-1">Rp</span>
+                                            <span className="text-3xl md:text-4xl font-black tracking-tighter">500</span>
+                                            <span className="text-sm md:text-base font-bold">.000</span>
                                         </div>
-                                        <div className="bg-indigo-800/40 text-white text-xs font-semibold px-3 py-1 rounded-full inline-block mt-2 backdrop-blur-sm border border-white/10">
+                                        <div className="bg-indigo-800/40 text-white text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block mt-1 backdrop-blur-sm border border-white/10">
                                             / 1 Aplikasi (Tahun pertama)
                                         </div>
                                     </div>
                                     
                                     {/* Gold Badge */}
-                                    <div className="hidden md:flex w-24 h-24 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 rounded-full items-center justify-center shadow-lg border-4 border-yellow-200/50 transform rotate-12 relative">
+                                    <div className="hidden lg:flex w-14 h-14 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 rounded-full items-center justify-center shadow-lg border-4 border-yellow-200/50 transform rotate-12 relative shrink-0 ml-2">
                                         <div className="text-center text-yellow-900 leading-none">
-                                            <div className="text-lg mb-1">👑</div>
-                                            <div className="font-black text-[10px] uppercase">Akun<br/>Pribadi</div>
+                                            <div className="text-sm mb-0.5">👑</div>
+                                            <div className="font-black text-[6px] uppercase">Akun<br/>Pribadi</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             
                             {/* FEATURES LIST */}
-                            <ul className="space-y-0 mb-8">
+                            <ul className="space-y-0 mb-5">
                                 {[
                                     {
                                         title: 'Terpasang di akun console kami',
-                                        desc: 'Aplikasi sudah siap digunakan di akun console milik kami, tanpa ribet.',
-                                        icon: <svg className="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5v17a.5.5 0 00.757.429l14-8.5a.5.5 0 000-.858l-14-8.5A.5.5 0 004 3.5z"/></svg>,
+                                        desc: 'Aplikasi sudah siap digunakan di akun console kami.',
+                                        icon: <svg className="w-3 h-3 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5v17a.5.5 0 00.757.429l14-8.5a.5.5 0 000-.858l-14-8.5A.5.5 0 004 3.5z"/></svg>,
                                         bg: 'bg-blue-50'
                                     },
                                     {
                                         title: 'Berlaku untuk 1 Aplikasi',
                                         desc: 'Cukup untuk 1 aplikasi sesuai kebutuhan Anda.',
-                                        icon: <span className="font-bold text-blue-600 text-lg">1</span>,
+                                        icon: <span className="font-bold text-blue-600 text-sm">1</span>,
                                         bg: 'bg-blue-100'
                                     },
                                     {
                                         title: 'Logo disesuaikan',
-                                        desc: 'Kami bantu sesuaikan logo aplikasi sesuai permintaan Anda.',
-                                        icon: <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>,
+                                        desc: 'Kami bantu sesuaikan logo aplikasi sesuai permintaan.',
+                                        icon: <svg className="w-3 h-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>,
                                         bg: 'bg-purple-50'
                                     },
                                     {
-                                        title: 'Aset desain (screenshot dll) dari client',
-                                        desc: 'Menggunakan aset desain dan screenshot dari Anda (client).',
-                                        icon: <svg className="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>,
+                                        title: 'Aset desain dari client',
+                                        desc: 'Menggunakan aset desain dan screenshot dari Anda.',
+                                        icon: <svg className="w-3 h-3 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>,
                                         bg: 'bg-pink-50'
                                     },
                                     {
-                                        title: 'Menerima file AAB/APK siap jadi',
-                                        desc: 'Anda cukup mengirimkan file AAB atau APK yang siap di-upload ke Play Store.',
-                                        icon: <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>,
+                                        title: 'Terima AAB/APK siap jadi',
+                                        desc: 'Anda kirimkan file aplikasi yang sudah siap rilis.',
+                                        icon: <svg className="w-3 h-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>,
                                         bg: 'bg-orange-50'
                                     },
                                     {
-                                        title: 'Tidak termasuk update berkala',
-                                        desc: 'Update aplikasi tidak termasuk dalam paket ini.',
-                                        icon: <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>,
-                                        bg: 'bg-emerald-50'
-                                    },
-                                    {
-                                        title: 'Biaya perpanjangan tahun berikutnya Rp 250.000',
-                                        desc: 'Perpanjangan tahunan cukup dengan harga terjangkau.',
-                                        icon: <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>,
+                                        title: 'Perpanjangan Rp 250.000',
+                                        desc: 'Biaya perpanjangan tahunan sangat terjangkau.',
+                                        icon: <svg className="w-3 h-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>,
                                         bg: 'bg-indigo-50'
                                     }
                                 ].map((feature, i, arr) => (
-                                    <li key={i} className={`flex items-start gap-4 py-4 ${i !== arr.length - 1 ? 'border-b border-slate-100' : ''}`}>
-                                        <div className={`w-12 h-12 rounded-2xl ${feature.bg} flex items-center justify-center shrink-0`}>
+                                    <li key={i} className={`flex items-start gap-2.5 py-2.5 ${i !== arr.length - 1 ? 'border-b border-slate-100' : ''}`}>
+                                        <div className={`w-8 h-8 rounded-lg ${feature.bg} flex items-center justify-center shrink-0`}>
                                             {feature.icon}
                                         </div>
-                                        <div className="flex-1 pt-1">
-                                            <h4 className="font-bold text-slate-800 text-sm">{feature.title}</h4>
-                                            <p className="text-slate-500 text-xs mt-1 pr-4">{feature.desc}</p>
+                                        <div className="flex-1 pt-0.5">
+                                            <h4 className="font-bold text-slate-800 text-[11px] md:text-xs">{feature.title}</h4>
+                                            <p className="text-slate-500 text-[9px] md:text-[10px] mt-0.5 pr-2 leading-snug">{feature.desc}</p>
                                         </div>
-                                        <div className="shrink-0 pt-2">
-                                            <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                        <div className="shrink-0 pt-1">
+                                            <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 flex items-center justify-center">
+                                                <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
                                         </div>
                                     </li>
@@ -553,11 +548,120 @@ export default function JasaUploadPlayStore() {
                             </ul>
                             
                             {/* BUTTON */}
-                            <a href={waUrl} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-1">
+                            <a href={`${waUrl}&text=Halo%20Mas%20Fanes,%20saya%20tertarik%20dengan%20Jasa%20Upload%20Aplikasi%20(Akun%20Pribadi%20Rp%20500rb)`} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden flex items-center justify-center gap-2 w-full py-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full font-bold transition-all shadow-md hover:-translate-y-0.5 text-[11px] md:text-xs">
                                 <div className="absolute inset-0 bg-white/20 w-1/2 -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                                <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                                <span className="relative z-10">Pesan Sekarang via WhatsApp</span>
-                                <svg className="w-5 h-5 relative z-10 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                <svg className="w-3.5 h-3.5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                <span className="relative z-10">Pesan Sekarang (Upload)</span>
+                            </a>
+                        </div>
+
+                        {/* CARD 2: PEMBUATAN AKUN */}
+                        <div className="bg-white rounded-[1.5rem] p-4 md:p-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-100 relative">
+                            {/* HEADER */}
+                            <div className="flex items-center gap-3 mb-4">
+                                {/* Rocket Icon */}
+                                <div className="relative">
+                                    <div className="absolute -top-2 -left-2 text-sm rotate-[-15deg]">🚀</div>
+                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center shadow-lg shadow-violet-500/30 text-white">
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-lg md:text-xl font-extrabold text-slate-800 tracking-tight">Buat <span className="text-fuchsia-600">Akun</span></h3>
+                                    <p className="text-slate-500 text-[10px] md:text-xs mt-0.5">Kami bantu buatkan <span className="text-violet-500 font-bold">Akun Play Store</span></p>
+                                </div>
+                            </div>
+                            
+                            {/* PRICE BLOCK */}
+                            <div className="bg-gradient-to-r from-violet-500 to-fuchsia-600 rounded-[1rem] p-4 relative overflow-hidden mb-5 shadow-lg shadow-violet-500/20">
+                                {/* Abstract Shapes in background */}
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-2xl -mr-8 -mt-8"></div>
+                                <div className="absolute bottom-0 left-0 w-20 h-20 bg-fuchsia-900/20 rounded-full blur-xl -ml-8 -mb-8"></div>
+                                
+                                <div className="relative z-10 flex justify-between items-center">
+                                    <div>
+                                        <div className="flex items-baseline text-white">
+                                            <span className="text-sm md:text-base font-bold mr-1">Rp</span>
+                                            <span className="text-3xl md:text-4xl font-black tracking-tighter">300</span>
+                                            <span className="text-sm md:text-base font-bold">.000</span>
+                                        </div>
+                                        <div className="bg-fuchsia-800/40 text-white text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block mt-1 backdrop-blur-sm border border-white/10">
+                                            / Jasa Pembuatan
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Gold Badge */}
+                                    <div className="hidden lg:flex w-14 h-14 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 rounded-full items-center justify-center shadow-lg border-4 border-yellow-200/50 transform rotate-12 relative shrink-0 ml-2">
+                                        <div className="text-center text-yellow-900 leading-none">
+                                            <div className="text-sm mb-0.5">✨</div>
+                                            <div className="font-black text-[6px] uppercase">Milik<br/>Anda</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* FEATURES LIST */}
+                            <ul className="space-y-0 mb-5">
+                                {[
+                                    {
+                                        title: 'Akun 100% Milik Anda',
+                                        desc: 'Akses penuh diserahkan ke email Anda selamanya.',
+                                        icon: <svg className="w-3 h-3 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>,
+                                        bg: 'bg-violet-50'
+                                    },
+                                    {
+                                        title: 'Bebas Upload Aplikasi',
+                                        desc: 'Tidak ada batasan jumlah aplikasi yang diupload.',
+                                        icon: <svg className="w-3 h-3 text-fuchsia-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>,
+                                        bg: 'bg-fuchsia-50'
+                                    },
+                                    {
+                                        title: 'Belum Termasuk $25',
+                                        desc: 'Biaya daftar Google Play dibayar dari saldo/kartu Anda.',
+                                        icon: <svg className="w-3 h-3 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>,
+                                        bg: 'bg-rose-50'
+                                    },
+                                    {
+                                        title: 'Dibantu Setup Pembayaran',
+                                        desc: 'Kami bantu setting akun Merchant untuk IAP.',
+                                        icon: <svg className="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>,
+                                        bg: 'bg-emerald-50'
+                                    },
+                                    {
+                                        title: 'Pendampingan Penuh',
+                                        desc: 'Konsultasi gratis sampai akun berhasil aktif.',
+                                        icon: <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>,
+                                        bg: 'bg-blue-50'
+                                    },
+                                    {
+                                        title: 'Sekali Bayar',
+                                        desc: 'Tidak ada biaya perpanjangan tahunan.',
+                                        icon: <svg className="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>,
+                                        bg: 'bg-amber-50'
+                                    }
+                                ].map((feature, i, arr) => (
+                                    <li key={i} className={`flex items-start gap-2.5 py-2.5 ${i !== arr.length - 1 ? 'border-b border-slate-100' : ''}`}>
+                                        <div className={`w-8 h-8 rounded-lg ${feature.bg} flex items-center justify-center shrink-0`}>
+                                            {feature.icon}
+                                        </div>
+                                        <div className="flex-1 pt-0.5">
+                                            <h4 className="font-bold text-slate-800 text-[11px] md:text-xs">{feature.title}</h4>
+                                            <p className="text-slate-500 text-[9px] md:text-[10px] mt-0.5 pr-2 leading-snug">{feature.desc}</p>
+                                        </div>
+                                        <div className="shrink-0 pt-1">
+                                            <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 flex items-center justify-center">
+                                                <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            
+                            {/* BUTTON */}
+                            <a href={`${waUrl}&text=Halo%20Mas%20Fanes,%20saya%20tertarik%20dengan%20Jasa%20Pembuatan%20Akun%20Play%20Store%20(Rp%20300rb)`} target="_blank" rel="noopener noreferrer" className="relative group overflow-hidden flex items-center justify-center gap-2 w-full py-2.5 bg-gradient-to-r from-violet-500 to-fuchsia-600 hover:from-violet-600 hover:to-fuchsia-700 text-white rounded-full font-bold transition-all shadow-md hover:-translate-y-0.5 text-[11px] md:text-xs">
+                                <div className="absolute inset-0 bg-white/20 w-1/2 -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                                <svg className="w-3.5 h-3.5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                <span className="relative z-10">Pesan Sekarang (Buat Akun)</span>
                             </a>
                         </div>
                     </div>
