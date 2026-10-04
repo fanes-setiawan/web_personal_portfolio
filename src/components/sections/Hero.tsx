@@ -40,7 +40,7 @@ export function Hero({ profile }: HeroProps) {
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 justify-center lg:justify-start">
                         <ScrollReveal delay={0.6} width="100%" className="sm:w-auto">
-                            <a href="#portfolio" className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+                            <a href="#portfolio" className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-500/30 hover:shadow-xl hover:-translate-y-1 whitespace-nowrap">
                                 View My Work <ArrowRight size={18} />
                             </a>
                         </ScrollReveal>
@@ -51,7 +51,7 @@ export function Hero({ profile }: HeroProps) {
                                     href="/api/tracking/cv"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-slate-300 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow hover:-translate-y-0.5 whitespace-nowrap"
+                                    className="w-full sm:w-auto px-6 py-3.5 bg-transparent hover:bg-slate-50 text-slate-600 border-2 border-slate-200 hover:border-slate-300 rounded-full font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 whitespace-nowrap"
                                 >
                                     Download CV <FileDown size={18} />
                                 </a>
@@ -63,7 +63,7 @@ export function Hero({ profile }: HeroProps) {
                                 href="https://play.google.com/store/apps/dev?id=6540217402260692469"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 hover:border-emerald-200 rounded-full font-bold flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow hover:-translate-y-0.5 whitespace-nowrap group"
+                                className="w-full sm:w-auto px-6 py-3.5 bg-transparent hover:bg-slate-50 text-slate-600 border-2 border-slate-200 hover:border-slate-300 rounded-full font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 whitespace-nowrap group"
                             >
                                 <img src="https://www.vectorlogo.zone/logos/google_play/google_play-icon.svg" className="w-5 h-5 group-hover:scale-110 transition-transform" alt="Play Store" />
                                 Play Store
@@ -72,23 +72,21 @@ export function Hero({ profile }: HeroProps) {
                     </div>
                     
                     {/* Tech Stack badges like the image */}
-                    <ScrollReveal delay={0.8}>
-                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-8">
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-4 h-4"/> Flutter</span>
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/apple/apple-ar21.svg" className="w-4 h-4 object-contain mb-0.5"/> iOS</span>
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/android/android-icon.svg" className="w-4 h-4"/> Android</span>
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" className="w-4 h-4"/> Firebase</span>
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center"><span className="text-[10px] text-blue-600 font-bold">API</span></div> REST API</span>
-                            <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-600 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm"><div className="w-4 h-4 bg-purple-100 rounded-full flex items-center justify-center"><span className="text-[10px] text-purple-600 font-bold">CI</span></div> CI/CD</span>
-                        </div>
-                    </ScrollReveal>
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[800ms] fill-mode-both">
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" className="w-3.5 h-3.5"/> Flutter</span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><img src="https://www.vectorlogo.zone/logos/apple/apple-ar21.svg" className="w-3.5 h-3.5 object-contain mb-0.5"/> iOS</span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><img src="https://www.vectorlogo.zone/logos/android/android-icon.svg" className="w-3.5 h-3.5"/> Android</span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" className="w-3.5 h-3.5"/> Firebase</span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><div className="w-3.5 h-3.5 bg-blue-100 rounded-full flex items-center justify-center"><span className="text-[8px] text-blue-600 font-bold">API</span></div> REST API</span>
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200"><div className="w-3.5 h-3.5 bg-purple-100 rounded-full flex items-center justify-center"><span className="text-[8px] text-purple-600 font-bold">CI</span></div> CI/CD</span>
+                    </div>
                 </div>
 
                 <ScrollReveal width="auto" direction="right" delay={0.4} duration={0.8} distance={40} className="relative w-full lg:w-5/12 flex justify-center lg:justify-end shrink-0">
                     <div className="relative w-64 h-80 sm:w-[280px] sm:h-[350px] md:w-[350px] md:h-[450px] mt-10 lg:mt-0">
                         <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden border border-slate-100 shadow-2xl shadow-blue-900/5 bg-white">
                             <img
-                                src="/images/foto-profil.jpeg?v=1"
+                                src="/images/Modern%20Teal%20Profile%20Portrait.png"
                                 alt={profile.name}
                                 className="w-full h-full object-cover object-top"
                             />

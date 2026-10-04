@@ -41,7 +41,7 @@ export function Projects({ projects, skills = [] }: ProjectsProps) {
                     <ScrollReveal key={project.id} delay={index * 0.1} distance={30}>
                         <Link
                             href={`/projects/${project.id}`}
-                            className="group bg-white rounded-[2.5rem] overflow-hidden border border-slate-100/80 transition-all duration-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 hover:border-blue-100 flex flex-col h-full cursor-pointer relative"
+                            className="group bg-white rounded-[2.5rem] overflow-hidden border border-slate-100/80 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-blue-100 flex flex-col h-full cursor-pointer relative"
                         >
                             {/* Content Area */}
                             <div className="p-8 pb-0 flex flex-col flex-grow z-10 relative">
